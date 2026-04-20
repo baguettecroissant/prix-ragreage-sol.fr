@@ -1,0 +1,228 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuoteWidget from '../components/QuoteWidget.astro';
+import PriceTable from '../components/PriceTable.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import FAQ from '../components/FAQ.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { siteConfig } from '../../site.config';
+import { getAllCities, getCityBySlug, getNearbyCities } from '../lib/cities';
+
+export function getStaticPaths() {
+  const allCities = getAllCities();
+  return allCities.map(city => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+const nearbyCities = getNearbyCities(city, 8);
+
+// SEO
+const title = siteConfig.niche.seoTitleTemplate
+  .replace('{city}', city.name)
+  .replace('{zip}', city.zip);
+const description = siteConfig.niche.metaDescTemplate
+  .replace('{city}', city.name)
+  .replace('{zip}', city.zip);
+
+// Deterministic content variation based on city slug
+const seed = city.slug.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+const priceMod = ((seed % 20) - 10) / 100; // -10% to +10% price variation
+
+// Schema.org
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": `${siteConfig.niche.name} à ${city.name}`,
+    "description": description,
+    "areaServed": {
+      "@type": "City",
+      "name": city.name,
+      "postalCode": city.zip,
+    },
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": siteConfig.name,
+      "url": `https://www.${siteConfig.domain}/${city.slug}`,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": `https://www.${siteConfig.domain}` },
+      { "@type": "ListItem", "position": 2, "name": "Annuaire", "item": `https://www.${siteConfig.domain}/annuaire` },
+      { "@type": "ListItem", "position": 3, "name": city.name, "item": `https://www.${siteConfig.domain}/${city.slug}` },
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": siteConfig.faq.slice(0, 4).map(f => ({
+      "@type": "Question",
+      "name": f.q.replace('{city}', city.name),
+      "acceptedAnswer": { "@type": "Answer", "text": f.a.replace('{city}', city.name) }
+    }))
+  }
+];
+
+// Intro variations
+const intros = [
+  `Vous recherchez un installateur de **${siteConfig.niche.nameShort}** à **${city.name}** (${city.zip}) ? Comparez gratuitement jusqu'à 3 devis d'artisans certifiés RGE dans le département ${city.deptName} (${city.deptCode}). Notre service est 100% gratuit et sans engagement.`,
+  `L'installation d'une **${siteConfig.niche.nameShort}** à **${city.name}** permet de diviser votre facture de chauffage par 3 à 4. En ${city.region}, les conditions climatiques sont idéales pour ce type d'équipement. Recevez 3 devis gratuits d'installateurs qualifiés RGE.`,
+  `À **${city.name}** (${city.deptName}), de plus en plus de propriétaires font le choix de la **${siteConfig.niche.nameShort}** pour remplacer leur chaudière fioul ou gaz. Avec les aides MaPrimeRénov' 2026, le reste à charge peut descendre sous les 5 000€. Estimez votre projet gratuitement.`,
+];
+const introIdx = seed % intros.length;
+
+const benefits = [
+  `Jusqu'à **70% d'économies** sur votre facture de chauffage à ${city.name}`,
+  `Artisans **certifiés RGE** dans le ${city.deptName} (${city.deptCode})`,
+  `Éligible aux **aides MaPrimeRénov' 2026** et CEE`,
+  `Production de **chauffage + eau chaude** avec un seul appareil`,
+  `COP moyen de **3 à 4** : 1 kWh consommé = 3 à 4 kWh de chaleur`,
+  `Durée de vie moyenne de **15 à 20 ans** avec entretien annuel`,
+];
+
+// Shuffle benefits deterministically
+const shuffledBenefits = [...benefits].sort((a, b) => {
+  const ha = a.charCodeAt(seed % a.length);
+  const hb = b.charCodeAt(seed % b.length);
+  return ha - hb;
+});
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`/${city.slug}`}
+  jsonLd={jsonLd}
+>
+  <!-- Hero -->
+  <section class="gradient-hero text-white py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[
+        { label: "Annuaire", href: "/annuaire" },
+        { label: city.deptName, href: `/annuaire#dept-${city.deptCode}` },
+        { label: city.name, href: `/${city.slug}` },
+      ]} />
+
+      <div class="grid lg:grid-cols-5 gap-10 items-start mt-6">
+        <!-- Content: 3 cols -->
+        <div class="lg:col-span-3">
+          <h1 class="text-2xl md:text-4xl font-extrabold leading-tight mb-6">
+            {siteConfig.niche.name} à {city.name} ({city.zip})<br/>
+            <span class="text-brand-200 text-xl md:text-2xl font-bold">Prix & Devis Gratuit 2026</span>
+          </h1>
+
+          <div class="prose prose-invert max-w-none mb-8">
+            <p class="text-gray-300 leading-relaxed" set:html={intros[introIdx].replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>')} />
+          </div>
+
+          <!-- Benefits -->
+          <div class="grid sm:grid-cols-2 gap-3 mb-8">
+            {shuffledBenefits.map((b) => (
+              <div class="flex items-start gap-2 bg-white/5 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/10">
+                <span class="text-green-400 mt-0.5">✓</span>
+                <span class="text-sm text-gray-200" set:html={b.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>')} />
+              </div>
+            ))}
+          </div>
+
+          <a href="/devis" class="inline-block bg-accent-500 hover:bg-accent-600 text-dark font-bold px-6 py-3.5 rounded-xl transition-colors shadow-lg text-base">
+            {siteConfig.niche.emoji} Comparer 3 Devis à {city.name}
+          </a>
+        </div>
+
+        <!-- Widget: 2 cols -->
+        <div class="lg:col-span-2">
+          <div class="sticky top-20">
+            <QuoteWidget keyword={`${siteConfig.niche.name} ${city.name}`} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Price Table -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <p class="text-sm text-gray-500 mb-4">
+      💡 Les prix ci-dessous sont des moyennes nationales. À {city.name} ({city.region}),
+      les tarifs peuvent varier de ±10% selon l'accessibilité du chantier et la complexité de l'installation.
+    </p>
+    <PriceTable />
+  </section>
+
+  <!-- Process -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <ProcessSteps />
+  </section>
+
+  <!-- Rédactionnel local -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">
+        🏠 Installer une {siteConfig.niche.nameShort} à {city.name}
+      </h2>
+      <div class="prose max-w-none text-gray-600 space-y-4">
+        <p>
+          La ville de <strong>{city.name}</strong>, située dans le département <strong>{city.deptName}</strong>
+          en région <strong>{city.region}</strong>, compte de nombreux installateurs qualifiés RGE
+          pour la pose de {siteConfig.niche.nameShort.toLowerCase()}.
+        </p>
+        <p>
+          Que vous habitiez en centre-ville de {city.name} ou dans les communes environnantes,
+          nos artisans partenaires interviennent dans tout le département {city.deptCode}.
+          Ils réalisent un bilan thermique gratuit avant tout devis pour vous proposer
+          la puissance et le modèle adaptés à votre logement.
+        </p>
+        <p>
+          En {city.region}, les hivers {seed % 2 === 0 ? 'rigoureux nécessitent' : 'doux permettent d\'optimiser'} le rendement
+          d'une {siteConfig.niche.nameShort.toLowerCase()}. Avec un COP saisonnier adapté aux conditions locales,
+          vous pouvez espérer diviser votre facture de chauffage par 3 dès la première année.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <FAQ items={siteConfig.faq} cityName={city.name} />
+  </section>
+
+  <!-- Nearby Cities & Internal Linking -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+      📍 {siteConfig.niche.nameShort} près de {city.name}
+    </h2>
+    <p class="text-gray-500 text-sm mb-6">Nos installateurs interviennent aussi dans ces villes voisines</p>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {nearbyCities.map((nc) => (
+        <a
+          href={`/${nc.slug}`}
+          class="bg-white border border-gray-200 rounded-xl px-4 py-3 hover:border-brand-300 hover:shadow-md transition-all group text-center"
+        >
+          <span class="font-semibold text-gray-900 group-hover:text-brand-600 text-sm block">{nc.name}</span>
+          <span class="text-xs text-gray-400">{nc.zip}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20 md:pb-8">
+    <div class="bg-gradient-to-r from-brand-600 to-brand-800 rounded-2xl p-8 text-center text-white">
+      <h2 class="text-xl md:text-2xl font-bold mb-3">
+        Obtenez vos 3 devis {siteConfig.niche.nameShort} à {city.name}
+      </h2>
+      <p class="text-brand-100 mb-5 text-sm">
+        Gratuit • Sans engagement • Artisans RGE du {city.deptName}
+      </p>
+      <a href="/devis" class="inline-block bg-white text-brand-700 font-bold px-8 py-3.5 rounded-xl hover:bg-brand-50 transition-colors shadow-lg">
+        Demander mes devis →
+      </a>
+    </div>
+  </section>
+</BaseLayout>
