@@ -1,24 +1,17 @@
 ---
 /**
- * ViteUnDevis Widget — Injecté en marque blanche
- * Ce composant charge le widget ViteUnDevis avec le keyword de la page
+ * ViteUnDevis Widget — Code d'intégration officiel
+ * Utilise la méthode d'injection script directe (pas iframe/marque blanche)
  */
 interface Props {
   keyword?: string;
-  partnerId?: string;
-  boxId?: string;
 }
 
 import { siteConfig } from '../../site.config';
 
-const {
-  keyword = siteConfig.niche.name,
-  partnerId = siteConfig.viteundevis.partnerId,
-  boxId = siteConfig.viteundevis.boxId,
-} = Astro.props;
+const { keyword = siteConfig.niche.name } = Astro.props;
 
-const encodedKeyword = encodeURIComponent(keyword);
-const widgetSrc = `//www.viteundevis.com/marqueblanche/?b=${boxId}&p=${partnerId}&c=${encodedKeyword}`;
+const { partnerId, boxId, categoryId } = siteConfig.viteundevis;
 const containerId = `v${boxId}d`;
 ---
 
@@ -33,7 +26,7 @@ const containerId = `v${boxId}d`;
 
   <!-- Widget Container -->
   <div class="p-4 sm:p-6">
-    <div id={containerId} class="min-h-[400px] w-full"></div>
+    <div id={containerId} class="vud-widget min-h-[400px] w-full"></div>
 
     <!-- Trust Indicators -->
     <div class="mt-6 pt-5 border-t border-gray-100">
@@ -55,34 +48,27 @@ const containerId = `v${boxId}d`;
   </div>
 </div>
 
-<!-- Load jQuery (required by ViteUnDevis) then widget -->
-<script is:inline define:vars={{ widgetSrc, containerId, boxId, partnerId, encodedKeyword }}>
+<!-- ViteUnDevis official integration script -->
+<script is:inline define:vars={{ partnerId, boxId, categoryId, containerId }}>
   function loadVUDWidget() {
     var target = document.getElementById(containerId);
     if (!target || target.dataset.loaded === 'true') return;
     target.dataset.loaded = 'true';
 
-    var s = document.createElement('script');
-    s.type = 'text/javascript';
-    s.src = widgetSrc;
-    s.async = true;
-    document.body.appendChild(s);
-  }
+    // Official ViteUnDevis integration method
+    window.vud_partenaire_id = partnerId;
+    window.vud_categorie_id = categoryId;
 
-  function initWidget() {
-    if (window.jQuery) {
-      loadVUDWidget();
-    } else {
-      var jq = document.createElement('script');
-      jq.src = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js';
-      jq.onload = loadVUDWidget;
-      document.head.appendChild(jq);
-    }
+    var vud_js = document.createElement('script');
+    vud_js.type = 'text/javascript';
+    vud_js.src = '//www.viteundevis.com/' + boxId + '/' + partnerId + '/' + categoryId + '/';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(vud_js, s);
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initWidget);
+    document.addEventListener('DOMContentLoaded', loadVUDWidget);
   } else {
-    initWidget();
+    loadVUDWidget();
   }
 </script>

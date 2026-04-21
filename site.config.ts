@@ -44,9 +44,8 @@ export const siteConfig = {
   // === MONÉTISATION ===
   viteundevis: {
     partnerId: "2353",
-    boxId: "7fd1a16f1a",
-    categoryBoxId: "4c4175c0f5",
-    categoryId: "0",
+    boxId: "822b6a43e4",
+    categoryId: "158",
   },
 
   // === COULEURS ===

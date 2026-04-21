@@ -41,7 +41,7 @@ body {
 }
 
 /* Fix: Tailwind CSS reset kills widget internal styles */
-[id$="d"] {
+.vud-widget {
   all: initial;
   display: block;
   width: 100%;
@@ -49,17 +49,17 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-[id$="d"] * {
+.vud-widget * {
   all: revert;
   box-sizing: border-box;
 }
 
-[id$="d"] a {
+.vud-widget a {
   color: #2563eb;
   text-decoration: underline;
 }
 
-[id$="d"] img {
+.vud-widget img {
   max-width: 100%;
   height: auto;
 }
