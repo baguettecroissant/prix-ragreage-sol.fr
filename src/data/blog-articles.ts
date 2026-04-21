@@ -13,6 +13,7 @@ export interface BlogArticle {
   readTime: string;
   category: string;
   emoji: string;
+  image: string;
   content: string; // HTML content
 }
 
@@ -27,6 +28,7 @@ export const blogArticles: BlogArticle[] = [
     readTime: "12 min",
     category: "Prix",
     emoji: "💰",
+    image: "/images/blog/hero-pac-maison.png",
     content: `
 <p>Le prix d'une <strong>pompe à chaleur air/eau</strong> varie entre <strong>8 000€ et 18 000€ TTC</strong> pose comprise en 2026. Cette fourchette large s'explique par les différences de puissance (8 à 16 kW), de marque (Atlantic, Daikin, Mitsubishi, Bosch), et de complexité d'installation. Mais grâce aux aides de l'État, le <strong>reste à charge réel peut descendre sous les 5 000€</strong>.</p>
 
@@ -106,6 +108,7 @@ export const blogArticles: BlogArticle[] = [
     readTime: "10 min",
     category: "Aides",
     emoji: "🏛️",
+    image: "/images/blog/hero-pac-maison.png",
     content: `
 <p>L'installation d'une <strong>pompe à chaleur air/eau</strong> en 2026 bénéficie de <strong>jusqu'à 16 000€ d'aides cumulées</strong>. Entre MaPrimeRénov', les Certificats d'Économies d'Énergie (CEE), la TVA réduite et l'Éco-PTZ, le reste à charge peut descendre sous les 2 000€ pour les foyers les plus modestes. Voici le guide complet.</p>
 
@@ -194,6 +197,7 @@ export const blogArticles: BlogArticle[] = [
     readTime: "8 min",
     category: "Comparatif",
     emoji: "⚖️",
+    image: "/images/blog/hero-pac-maison.png",
     content: `
 <p>La question revient dans 80% des consultations : <strong>PAC air/eau ou air/air ?</strong> Si les deux captent les calories de l'air extérieur, elles les restituent différemment — et cette différence change tout : prix, confort, aides, et valeur ajoutée pour votre logement.</p>
 
@@ -257,6 +261,7 @@ export const blogArticles: BlogArticle[] = [
     readTime: "9 min",
     category: "Guide",
     emoji: "🏆",
+    image: "/images/blog/hero-pac-maison.png",
     content: `
 <p>Choisir la bonne marque de <strong>pompe à chaleur air/eau</strong> est aussi important que le dimensionnement. Une marque fiable, c'est 15-20 ans de tranquillité. Une marque low-cost, c'est des pannes, du SAV et des regrets. Voici notre classement objectif 2026.</p>
 
@@ -349,6 +354,7 @@ export const blogArticles: BlogArticle[] = [
     readTime: "7 min",
     category: "Maintenance",
     emoji: "🔧",
+    image: "/images/blog/hero-pac-maison.png",
     content: `
 <p>Depuis le <strong>décret du 28 juillet 2020</strong>, l'entretien d'une pompe à chaleur contenant plus de 2 kg de fluide frigorigène est <strong>obligatoire tous les 2 ans</strong>. En pratique, la plupart des installateurs recommandent un <strong>contrat de maintenance annuel</strong> pour garantir performances et longévité. Voici tout ce qu'il faut savoir.</p>
 
