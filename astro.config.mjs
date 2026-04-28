@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.prix-pac-air-eau.fr',
+  site: 'https://www.prix-ragreage-sol.fr',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
