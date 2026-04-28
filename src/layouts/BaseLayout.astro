@@ -49,7 +49,7 @@ const canonicalUrl = canonical
   <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600;700&family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <!-- JSON-LD Structured Data -->
   {jsonLd.map((schema) => (
@@ -88,7 +88,7 @@ const canonicalUrl = canonical
   <!-- Footer -->
   <footer class="bg-dark text-gray-400 py-12 mt-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-3 gap-8 mb-8">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
         <div>
           <div class="flex items-center gap-2 mb-4">
             <span class="text-2xl">{siteConfig.niche.emoji}</span>
@@ -107,11 +107,23 @@ const canonicalUrl = canonical
           </ul>
         </div>
         <div>
+          <h4 class="text-white font-semibold mb-4">Ragréage par ville</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/paris" class="hover:text-white transition-colors">Ragréage Paris</a></li>
+            <li><a href="/marseille" class="hover:text-white transition-colors">Ragréage Marseille</a></li>
+            <li><a href="/lyon" class="hover:text-white transition-colors">Ragréage Lyon</a></li>
+            <li><a href="/toulouse" class="hover:text-white transition-colors">Ragréage Toulouse</a></li>
+            <li><a href="/bordeaux" class="hover:text-white transition-colors">Ragréage Bordeaux</a></li>
+            <li><a href="/nantes" class="hover:text-white transition-colors">Ragréage Nantes</a></li>
+          </ul>
+        </div>
+        <div>
           <h4 class="text-white font-semibold mb-4">Informations</h4>
           <ul class="space-y-2 text-sm">
             <li>Service 100% gratuit</li>
-            <li>Artisans certifiés RGE</li>
+            <li>Artisans qualifiés vérifiés</li>
             <li>Données indicatives 2026</li>
+            <li>Normes DTU 53.2</li>
           </ul>
         </div>
       </div>

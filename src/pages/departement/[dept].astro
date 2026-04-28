@@ -4,6 +4,7 @@ import QuoteWidget from '../../components/QuoteWidget.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { siteConfig } from '../../../site.config';
 import { getAllDepartments, getCitiesByDepartment } from '../../lib/cities';
+import { blogArticles } from '../../data/blog-articles';
 
 export function getStaticPaths() {
   const departments = getAllDepartments();
@@ -22,18 +23,20 @@ const nearbyDepts = allDepartments
   .filter(d => d.region === dept.region && d.code !== dept.code)
   .slice(0, 6);
 
-// Zone climatique
-const zone = dept.region.includes('Hauts-de-France') || dept.region.includes('Grand Est') || dept.region.includes('Bourgogne') ? 'H1' :
-             dept.region.includes('PACA') || dept.region.includes('Corse') || dept.region.includes('Occitanie') ? 'H3' : 'H2';
+// Seed for deterministic content
+const seed = dept.code.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
 
-const title = `PAC Air/Eau ${dept.name} (${dept.code}) — Prix & Installateurs RGE 2026`;
-const description = `Comparez les prix de pompe à chaleur air/eau dans le ${dept.name} (${dept.code}). ${cities.length} villes couvertes. Devis gratuits d'installateurs RGE en ${dept.region}.`;
+// Related blog articles (deterministic selection)
+const relatedArticles = blogArticles.slice(seed % 3, (seed % 3) + 3);
+
+const title = `Ragréage ${dept.name} (${dept.code}) — Prix au m² & Devis Gratuits 2026`;
+const description = `Comparez les prix au m² pour un ragréage dans le ${dept.name} (${dept.code}). ${cities.length} villes couvertes. Devis gratuits d'artisans qualifiés en ${dept.region}.`;
 
 const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": `PAC Air/Eau - ${dept.name}`,
+    "name": `Ragréage - ${dept.name}`,
     "description": description,
     "url": `https://www.${siteConfig.domain}/departement/${dept.code.toLowerCase()}`,
   },
@@ -71,11 +74,11 @@ const jsonLd = [
           </div>
 
           <h1 class="text-2xl md:text-4xl font-extrabold leading-tight mb-4">
-            Pompe à Chaleur Air/Eau dans le {dept.name} ({dept.code})
+            Ragréage de Sol dans le {dept.name} ({dept.code})
           </h1>
 
           <p class="text-gray-300 leading-relaxed mb-6 max-w-xl">
-            Trouvez un installateur certifié RGE pour votre {siteConfig.niche.nameShort} dans le {dept.name}.
+            Trouvez un artisan qualifié pour votre ragréage dans le {dept.name}.
             <strong class="text-white">{cities.length} villes couvertes</strong>, devis gratuits et sans engagement.
           </p>
 
@@ -84,10 +87,10 @@ const jsonLd = [
               ✓ {cities.length} villes
             </span>
             <span class="bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-1.5 rounded-full text-sm">
-              ✓ Zone climatique {zone}
+              ✓ Artisans qualifiés locaux
             </span>
             <span class="bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-1.5 rounded-full text-sm">
-              ✓ Artisans RGE locaux
+              ✓ Devis sous 48h
             </span>
           </div>
 
@@ -110,20 +113,19 @@ const jsonLd = [
     <!-- Local Info -->
     <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
       <h2 class="text-2xl font-bold text-gray-900 mb-4">
-        🏠 Installer une {siteConfig.niche.nameShort} dans le {dept.name}
+        🏠 Ragréage de sol dans le {dept.name}
       </h2>
       <div class="prose max-w-none text-gray-600 space-y-4">
         <p>
           Le département du <strong>{dept.name}</strong> ({dept.code}), situé en région <strong>{dept.region}</strong>,
-          est classé en <strong>zone climatique {zone}</strong>.
-          {zone === 'H1' ? " Les hivers y sont rigoureux, ce qui rend la pompe à chaleur air/eau particulièrement rentable : les économies sur la facture de chauffage sont maximales. Un modèle haute température (65°C) est recommandé pour garantir le confort par grand froid." :
-           zone === 'H3' ? " Le climat doux et ensoleillé permet d'atteindre des COP saisonniers exceptionnels (souvent > 4), faisant du département l'un des plus rentables de France pour la PAC air/eau. Un modèle standard 55°C suffit dans la plupart des cas." :
-           " Le climat tempéré offre un excellent compromis entre performance et coût. Un modèle standard 55°C convient pour la majorité des habitations, avec des COP saisonniers de 3,5 à 4."}
+          regroupe un parc immobilier varié nécessitant régulièrement des travaux de ragréage.
+          Les constructions anciennes (avant 1990) présentent souvent des dalles béton irrégulières
+          ou des planchers déformés qui nécessitent une remise à niveau avant toute pose de revêtement.
         </p>
         <p>
           Nos <strong>{cities.length} villes couvertes</strong> dans le {dept.name} vous garantissent l'accès à des
-          installateurs certifiés RGE proches de chez vous. La proximité géographique réduit les frais de déplacement
-          et assure un SAV réactif.
+          artisans qualifiés proches de chez vous. La proximité géographique réduit les frais de déplacement
+          et assure un suivi réactif de votre chantier.
         </p>
       </div>
     </section>
@@ -131,29 +133,47 @@ const jsonLd = [
     <!-- Price Range -->
     <section class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl border border-green-200 p-6 md:p-8">
       <h2 class="text-xl font-bold text-gray-900 mb-4">
-        💰 Prix moyen d'une PAC Air/Eau dans le {dept.name}
+        💰 Prix moyen d'un ragréage dans le {dept.name}
       </h2>
       <div class="grid sm:grid-cols-3 gap-4 mb-4">
         <div class="bg-white rounded-xl p-4 text-center border border-green-100">
-          <span class="block text-sm text-gray-500 mb-1">Entrée de gamme</span>
-          <span class="block text-xl font-bold text-gray-900">{zone === 'H1' ? '9 500€' : zone === 'H3' ? '8 000€' : '8 500€'}</span>
-          <span class="block text-xs text-gray-400">8-10 kW posé</span>
+          <span class="block text-sm text-gray-500 mb-1">Ragréage Standard</span>
+          <span class="block text-xl font-bold text-gray-900">15 €/m²</span>
+          <span class="block text-xs text-gray-400">Autolissant classique</span>
         </div>
         <div class="bg-white rounded-xl p-4 text-center border border-brand-200 ring-2 ring-brand-100">
           <span class="block text-sm text-brand-600 font-medium mb-1">Le plus courant</span>
-          <span class="block text-xl font-bold text-gray-900">{zone === 'H1' ? '12 500€' : zone === 'H3' ? '10 500€' : '11 500€'}</span>
-          <span class="block text-xs text-gray-400">10-14 kW posé</span>
+          <span class="block text-xl font-bold text-gray-900">22 €/m²</span>
+          <span class="block text-xs text-gray-400">Fibré / forte épaisseur</span>
         </div>
         <div class="bg-white rounded-xl p-4 text-center border border-green-100">
           <span class="block text-sm text-gray-500 mb-1">Haut de gamme</span>
-          <span class="block text-xl font-bold text-gray-900">{zone === 'H1' ? '17 000€' : zone === 'H3' ? '14 000€' : '15 500€'}</span>
-          <span class="block text-xs text-gray-400">14-16 kW posé</span>
+          <span class="block text-xl font-bold text-gray-900">45 €/m²</span>
+          <span class="block text-xs text-gray-400">Technique spécifique / P4</span>
         </div>
       </div>
       <p class="text-sm text-gray-500">
-        Prix TTC pose comprise, avant déduction des aides. Après MaPrimeRénov' + CEE, le reste à charge moyen dans le {dept.name} est de
-        <strong>{zone === 'H1' ? '3 500 – 7 000€' : zone === 'H3' ? '2 500 – 5 500€' : '3 000 – 6 500€'}</strong>.
+        Prix TTC moyens constatés dans le {dept.name} en 2026, fournitures et main d'œuvre comprises.
       </p>
+    </section>
+
+    <!-- MAILLAGE: Blog Guides -->
+    <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">
+        📚 Guides Ragréage — À lire avant vos travaux
+      </h2>
+      <div class="grid sm:grid-cols-3 gap-4">
+        {relatedArticles.map(a => (
+          <a href={`/blog/${a.slug}`} class="bg-gray-50 border border-gray-200 rounded-xl p-4 hover:border-brand-300 hover:shadow-md transition-all group">
+            <span class="text-2xl block mb-2">{a.emoji}</span>
+            <span class="text-xs text-brand-600 font-medium">{a.category}</span>
+            <h3 class="font-semibold text-gray-900 group-hover:text-brand-600 text-sm mt-1 line-clamp-2">{a.title}</h3>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-4">
+        <a href="/blog" class="text-brand-600 hover:text-brand-700 font-semibold text-sm">Voir tous nos guides →</a>
+      </div>
     </section>
 
     <!-- Cities Grid -->
@@ -181,7 +201,7 @@ const jsonLd = [
     {nearbyDepts.length > 0 && (
       <section>
         <h2 class="text-xl font-bold text-gray-900 mb-4">
-          🗺️ Départements voisins en {dept.region}
+          🗺️ Ragréage dans les départements voisins ({dept.region})
         </h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {nearbyDepts.map((nd) => (
@@ -201,10 +221,10 @@ const jsonLd = [
     <section class="pb-20 md:pb-0">
       <div class="bg-gradient-to-r from-brand-600 to-brand-800 rounded-2xl p-8 text-center text-white">
         <h2 class="text-xl md:text-2xl font-bold mb-3">
-          Obtenez vos 3 devis {siteConfig.niche.nameShort} dans le {dept.name}
+          Obtenez vos 3 devis ragréage dans le {dept.name}
         </h2>
         <p class="text-brand-100 mb-5 text-sm">
-          Gratuit • Sans engagement • Artisans RGE du {dept.name}
+          Gratuit • Sans engagement • Artisans qualifiés du {dept.name}
         </p>
         <a href="/devis" class="inline-block bg-white text-brand-700 font-bold px-8 py-3.5 rounded-xl hover:bg-brand-50 transition-colors shadow-lg">
           Demander mes devis →

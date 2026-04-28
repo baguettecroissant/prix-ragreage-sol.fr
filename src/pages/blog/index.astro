@@ -2,13 +2,17 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { siteConfig } from '../../../site.config';
 import { blogArticles } from '../../data/blog-articles';
+import { getAllCities, getAllDepartments } from '../../lib/cities';
+
+const topCities = getAllCities().slice(0, 12);
+const topDepts = getAllDepartments().slice(0, 10);
 
 const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": `Blog - ${siteConfig.name}`,
-    "description": "Guides, comparatifs et conseils d'experts sur les pompes à chaleur air/eau : prix, aides, marques, entretien.",
+    "description": `Guides, comparatifs et conseils d'experts sur le ragréage : prix au m², normes DTU, types de mortier et conseils de pose.`,
     "url": `https://www.${siteConfig.domain}/blog`,
   },
   {
@@ -23,8 +27,8 @@ const jsonLd = [
 ---
 
 <BaseLayout
-  title={`Blog PAC Air/Eau — Guides & Conseils | ${siteConfig.name}`}
-  description="Guides, comparatifs et conseils d'experts sur les pompes à chaleur air/eau : prix 2026, aides MaPrimeRénov', meilleures marques, entretien et installation."
+  title={`Blog Ragréage — Guides & Conseils d'Experts | ${siteConfig.name}`}
+  description="Guides, comparatifs et conseils d'experts sur le ragréage de sol : prix au m² en 2026, normes DTU 53.2, types de mortier autolissant, choix d'artisan et techniques de pose."
   canonical="/blog"
   jsonLd={jsonLd}
 >
@@ -32,10 +36,10 @@ const jsonLd = [
   <section class="gradient-hero text-white py-12 md:py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-3xl md:text-4xl font-extrabold mb-4">
-        📚 Guides & Conseils PAC Air/Eau
+        📚 Guides & Conseils Ragréage
       </h1>
       <p class="text-gray-300 text-lg max-w-2xl mx-auto">
-        Tout ce que vous devez savoir avant d'installer une pompe à chaleur air/eau : prix, aides, marques, entretien — par des experts.
+        Tout ce que vous devez savoir avant de réaliser un ragréage : prix au m², types de mortier, normes DTU, techniques de pose — par des experts du bâtiment.
       </p>
     </div>
   </section>
@@ -81,6 +85,35 @@ const jsonLd = [
     </div>
   </section>
 
+  <!-- MAILLAGE: Top Cities Hub -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+    <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-8">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">📍 Ragréage par ville — Les plus recherchées</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+        {topCities.map(city => (
+          <a href={`/${city.slug}`} class="text-sm text-brand-600 hover:text-brand-800 transition-colors">
+            Ragréage {city.name}
+          </a>
+        ))}
+      </div>
+      <a href="/annuaire" class="text-brand-600 hover:text-brand-700 font-semibold text-sm mt-4 block">Voir toutes les villes →</a>
+    </div>
+  </section>
+
+  <!-- MAILLAGE: Top Departments Hub -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+    <div class="bg-gray-50 rounded-2xl border border-gray-200 p-6 md:p-8">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">🗺️ Ragréage par département</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+        {topDepts.map(dept => (
+          <a href={`/departement/${dept.code.toLowerCase()}`} class="text-sm text-brand-600 hover:text-brand-800 transition-colors">
+            {dept.name} ({dept.code})
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
     <div class="bg-gradient-to-r from-brand-600 to-brand-800 rounded-2xl p-8 md:p-12 text-center text-white">
@@ -88,7 +121,7 @@ const jsonLd = [
         Vous avez lu les guides, passez à l'action !
       </h2>
       <p class="text-brand-100 mb-6 max-w-lg mx-auto">
-        Comparez 3 devis d'installateurs certifiés RGE. Service 100% gratuit et sans engagement.
+        Comparez 3 devis d'artisans qualifiés pour votre ragréage. Service 100% gratuit et sans engagement.
       </p>
       <a href="/devis" class="inline-block bg-white text-brand-700 font-bold px-8 py-4 rounded-xl hover:bg-brand-50 transition-colors shadow-lg text-lg">
         {siteConfig.niche.emoji} Demander mes 3 devis gratuits

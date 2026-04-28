@@ -6,9 +6,11 @@ import ProcessSteps from '../components/ProcessSteps.astro';
 import FAQ from '../components/FAQ.astro';
 import { siteConfig } from '../../site.config';
 import { getAllCities, getAllDepartments } from '../lib/cities';
+import { blogArticles } from '../data/blog-articles';
 
 const topCities = getAllCities().slice(0, 20);
 const departments = getAllDepartments();
+const topDepts = departments.slice(0, 12);
 
 const jsonLd = [
   {
@@ -79,7 +81,7 @@ const jsonLd = [
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-        Pourquoi choisir une {siteConfig.niche.nameShort} ?
+        Pourquoi réaliser un {siteConfig.niche.nameShort} ?
       </h2>
       <div class="text-gray-600 leading-relaxed space-y-4">
         {siteConfig.introText.split('\n\n').map((paragraph) => (
@@ -119,7 +121,7 @@ const jsonLd = [
     <h2 class="text-2xl font-bold text-gray-900 mb-2">
       📍 {siteConfig.niche.nameShort} par ville
     </h2>
-    <p class="text-gray-500 mb-6">Trouvez un installateur certifié RGE près de chez vous</p>
+    <p class="text-gray-500 mb-6">Trouvez un artisan qualifié près de chez vous</p>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
       {topCities.map((city) => (
         <a
@@ -138,6 +140,53 @@ const jsonLd = [
     </div>
   </section>
 
+  <!-- MAILLAGE: Blog Guides Hub -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+      📚 Nos guides experts ragréage
+    </h2>
+    <p class="text-gray-500 mb-6">Tout savoir avant de démarrer vos travaux de ragréage</p>
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+      {blogArticles.slice(0, 4).map(a => (
+        <a href={`/blog/${a.slug}`} class="bg-white border border-gray-200 rounded-xl p-5 hover:border-brand-300 hover:shadow-md transition-all group">
+          <span class="text-2xl block mb-2">{a.emoji}</span>
+          <span class="text-xs text-brand-600 font-medium">{a.category}</span>
+          <h3 class="font-semibold text-gray-900 group-hover:text-brand-600 text-sm mt-1 line-clamp-2">{a.title}</h3>
+          <span class="text-xs text-gray-400 mt-2 block">{a.readTime}</span>
+        </a>
+      ))}
+    </div>
+    <div class="text-center mt-6">
+      <a href="/blog" class="text-brand-600 hover:text-brand-700 font-semibold text-sm transition-colors">
+        Voir tous nos guides →
+      </a>
+    </div>
+  </section>
+
+  <!-- MAILLAGE: Department Hubs -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+      🗺️ Ragréage par département
+    </h2>
+    <p class="text-gray-500 mb-6">Trouvez les artisans de votre département</p>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+      {topDepts.map(dept => (
+        <a
+          href={`/departement/${dept.code.toLowerCase()}`}
+          class="bg-white border border-gray-200 rounded-xl px-4 py-3 hover:border-brand-300 hover:shadow-md transition-all group text-center"
+        >
+          <span class="font-semibold text-gray-900 group-hover:text-brand-600 text-sm">{dept.name}</span>
+          <span class="block text-xs text-gray-400 mt-0.5">{dept.code} • {dept.count} villes</span>
+        </a>
+      ))}
+    </div>
+    <div class="text-center mt-6">
+      <a href="/annuaire" class="text-brand-600 hover:text-brand-700 font-semibold text-sm transition-colors">
+        Voir tous les départements →
+      </a>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <FAQ items={siteConfig.faq} />
@@ -147,10 +196,10 @@ const jsonLd = [
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="bg-gradient-to-r from-brand-600 to-brand-800 rounded-2xl p-8 md:p-12 text-center text-white">
       <h2 class="text-2xl md:text-3xl font-bold mb-4">
-        Prêt à économiser sur votre chauffage ?
+        Prêt à démarrer vos travaux de ragréage ?
       </h2>
       <p class="text-brand-100 mb-6 max-w-lg mx-auto">
-        Comparez les devis de 3 installateurs certifiés RGE. C'est gratuit, rapide et sans engagement.
+        Comparez les devis de 3 artisans qualifiés. C'est gratuit, rapide et sans engagement.
       </p>
       <a href="/devis" class="inline-block bg-white text-brand-700 font-bold px-8 py-4 rounded-xl hover:bg-brand-50 transition-colors shadow-lg text-lg">
         {siteConfig.niche.emoji} Demander mes 3 devis gratuits

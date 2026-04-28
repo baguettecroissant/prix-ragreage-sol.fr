@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import QuoteWidget from '../../components/QuoteWidget.astro';
 import { siteConfig } from '../../../site.config';
 import { blogArticles, type BlogArticle } from '../../data/blog-articles';
+import { getAllCities, getAllDepartments } from '../../lib/cities';
 
 export function getStaticPaths() {
   return blogArticles.map(article => ({
@@ -15,6 +16,10 @@ const { article } = Astro.props as { article: BlogArticle };
 
 // Related articles (exclude current)
 const relatedArticles = blogArticles.filter(a => a.slug !== article.slug).slice(0, 3);
+
+// MAILLAGE: Top cities for sidebar
+const topCities = getAllCities().slice(0, 8);
+const topDepts = getAllDepartments().slice(0, 6);
 
 const jsonLd = [
   {
@@ -119,7 +124,7 @@ const jsonLd = [
             Prêt à passer à l'action ?
           </h3>
           <p class="text-brand-100 mb-5 text-sm">
-            Comparez 3 devis d'installateurs RGE près de chez vous. Gratuit et sans engagement.
+            Comparez 3 devis d'artisans qualifiés près de chez vous. Gratuit et sans engagement.
           </p>
           <a href="/devis" class="inline-block bg-white text-brand-700 font-bold px-8 py-3.5 rounded-xl hover:bg-brand-50 transition-colors shadow-lg">
             {siteConfig.niche.emoji} Demander mes devis gratuits
@@ -149,13 +154,26 @@ const jsonLd = [
             <QuoteWidget />
           </div>
 
-          <!-- Quick Links -->
+          <!-- MAILLAGE: Quick Links to Cities -->
           <div class="bg-white rounded-xl border border-gray-200 p-5">
-            <h4 class="font-bold text-gray-900 mb-3 text-sm">📍 Devis par ville</h4>
+            <h4 class="font-bold text-gray-900 mb-3 text-sm">📍 Ragréage par ville</h4>
             <div class="grid grid-cols-2 gap-2">
-              {['paris', 'lyon', 'marseille', 'bordeaux', 'toulouse', 'nantes'].map(city => (
-                <a href={`/${city}`} class="text-xs text-brand-600 hover:text-brand-800 transition-colors capitalize">
-                  PAC {city}
+              {topCities.map(city => (
+                <a href={`/${city.slug}`} class="text-xs text-brand-600 hover:text-brand-800 transition-colors">
+                  Ragréage {city.name}
+                </a>
+              ))}
+            </div>
+            <a href="/annuaire" class="text-xs text-gray-500 hover:text-brand-600 mt-3 block">Voir toutes les villes →</a>
+          </div>
+
+          <!-- MAILLAGE: Quick Links to Departments -->
+          <div class="bg-white rounded-xl border border-gray-200 p-5">
+            <h4 class="font-bold text-gray-900 mb-3 text-sm">🗺️ Par département</h4>
+            <div class="grid grid-cols-2 gap-2">
+              {topDepts.map(dept => (
+                <a href={`/departement/${dept.code.toLowerCase()}`} class="text-xs text-brand-600 hover:text-brand-800 transition-colors">
+                  {dept.name} ({dept.code})
                 </a>
               ))}
             </div>

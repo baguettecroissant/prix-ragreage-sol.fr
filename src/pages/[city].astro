@@ -7,12 +7,14 @@ import FAQ from '../components/FAQ.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { siteConfig } from '../../site.config';
 import { getAllCities, getCityBySlug, getNearbyCities } from '../lib/cities';
+import { blogArticles } from '../data/blog-articles';
 import localContentRaw from '../data/local-content.json';
 
 const localContent = localContentRaw as Record<string, {
   intro: string;
-  local_tip: string;
-  history_anecdote: string;
+  expert_advice: string;
+  real_estate_context: string;
+  authority_link_html: string;
   faq_local: { question: string; answer: string };
   market_data: string;
 }>;
@@ -83,23 +85,23 @@ const jsonLd = [
   }
 ];
 
-// Generic intro fallbacks (used when no local content exists)
+// Generic intro fallbacks (ragréage specific)
 const genericIntros = [
-  `Vous recherchez un installateur de **${siteConfig.niche.nameShort}** à **${city.name}** (${city.zip}) ? Comparez gratuitement jusqu'à 3 devis d'artisans certifiés RGE dans le département ${city.deptName} (${city.deptCode}). Notre service est 100% gratuit et sans engagement.`,
-  `L'installation d'une **${siteConfig.niche.nameShort}** à **${city.name}** permet de diviser votre facture de chauffage par 3 à 4. En ${city.region}, les conditions climatiques sont idéales pour ce type d'équipement. Recevez 3 devis gratuits d'installateurs qualifiés RGE du ${city.deptName}.`,
-  `À **${city.name}** (${city.deptName}), de plus en plus de propriétaires font le choix de la **${siteConfig.niche.nameShort}** pour remplacer leur chaudière fioul ou gaz. Avec les aides MaPrimeRénov' 2026, le reste à charge peut descendre sous les 5 000€. Estimez votre projet gratuitement.`,
+  `Vous recherchez un artisan pour un **ragréage** à **${city.name}** (${city.zip}) ? Comparez gratuitement jusqu'à 3 devis de professionnels qualifiés dans le département ${city.deptName} (${city.deptCode}). Notre service est 100% gratuit et sans engagement.`,
+  `Un **ragréage de sol** à **${city.name}** est indispensable pour obtenir une surface parfaitement plane avant la pose de votre nouveau revêtement. En ${city.region}, les artisans locaux proposent des tarifs compétitifs. Recevez 3 devis gratuits.`,
+  `À **${city.name}** (${city.deptName}), de plus en plus de propriétaires font appel à un professionnel pour le **ragréage** de leur sol avant rénovation. Avec des prix allant de 15 à 45 €/m², comparez les devis locaux pour obtenir le meilleur rapport qualité/prix.`,
 ];
 
 const introText = lc?.intro || genericIntros[seed % genericIntros.length];
 
 // Benefits with deterministic shuffle
 const benefits = [
-  `Jusqu'à **70% d'économies** sur votre facture de chauffage à ${city.name}`,
-  `Artisans **certifiés RGE** dans le ${city.deptName} (${city.deptCode})`,
-  `Éligible aux **aides MaPrimeRénov' 2026** et CEE`,
-  `Production de **chauffage + eau chaude** avec un seul appareil`,
-  `COP moyen de **3 à 4** : 1 kWh consommé = 3 à 4 kWh de chaleur`,
-  `Durée de vie moyenne de **15 à 20 ans** avec entretien annuel`,
+  `Un sol parfaitement **plat et de niveau** à ${city.name}`,
+  `Artisans **qualifiés et expérimentés** dans le ${city.deptName} (${city.deptCode})`,
+  `Préparation indispensable pour **carrelage ou parquet**`,
+  `Produits adaptés : **autolissant ou fibré**`,
+  `Séchage rapide pour une **pose accélérée** du revêtement`,
+  `Garantie d'une **durabilité maximale** de vos sols`,
 ];
 
 const shuffledBenefits = [...benefits].sort((a, b) => {
@@ -173,23 +175,27 @@ const sectionOrder = [0, 1, 2, 3, 4].sort((a, b) => {
   <!-- Main Content Area -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
 
-    {/* Section: Local Expert Content */}
+    {/* Section: Local Expert Content & EEAT */}
     {lc && (
       <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-6">
-          🏠 Installer une {siteConfig.niche.nameShort} à {city.name} ({city.deptCode})
+          🏠 Réussir son ragréage à {city.name} ({city.deptCode})
         </h2>
-        <div class="prose max-w-none text-gray-600 space-y-4">
-          <p>{lc.intro}</p>
+        <div class="prose max-w-none text-gray-600 space-y-6">
+          <p class="lead">{lc.intro}</p>
 
-          <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg my-6">
-            <h3 class="text-blue-900 font-bold text-base mb-2">💡 Conseil local — {city.name}</h3>
-            <p class="text-blue-800 text-sm">{lc.local_tip}</p>
+          <div class="grid md:grid-cols-2 gap-6 my-6">
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+              <p class="text-blue-900 text-sm" set:html={lc.expert_advice.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+            </div>
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+              <p class="text-amber-900 text-sm" set:html={lc.real_estate_context.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+            </div>
           </div>
 
-          <p class="italic text-gray-500 border-l-2 border-gray-200 pl-4">
-            📜 {lc.history_anecdote}
-          </p>
+          <div class="bg-gray-50 border border-gray-200 p-5 rounded-xl">
+            <p class="text-gray-700 text-sm" set:html={lc.authority_link_html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+          </div>
         </div>
       </section>
     )}
@@ -208,31 +214,25 @@ const sectionOrder = [0, 1, 2, 3, 4].sort((a, b) => {
     {!lc && (
       <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-4">
-          🏠 Installer une {siteConfig.niche.nameShort} à {city.name}
+          🏠 Réaliser un ragréage à {city.name}
         </h2>
         <div class="prose max-w-none text-gray-600 space-y-4">
           <p>
             La ville de <strong>{city.name}</strong>, située dans le département <strong>{city.deptName}</strong>
-            en région <strong>{city.region}</strong>, compte de nombreux installateurs qualifiés RGE
-            pour la pose de {siteConfig.niche.nameShort.toLowerCase()}.
+            en région <strong>{city.region}</strong>, compte de nombreux artisans qualifiés
+            pour la réalisation de ragréage de sol.
           </p>
           <p>
             Que vous habitiez en centre-ville de {city.name} ou dans les communes environnantes,
             nos artisans partenaires interviennent dans tout le département {city.deptCode}.
-            Ils réalisent un bilan thermique gratuit avant tout devis pour vous proposer
-            la puissance et le modèle adaptés à votre logement.
+            Ils réalisent un diagnostic gratuit de votre sol avant tout devis pour vous proposer
+            le type de ragréage le mieux adapté à votre support (autolissant, fibré ou autonivelant).
           </p>
           <p>
-            En zone climatique <strong>{zone}</strong> ({city.region}),
-            {zone === 'H1' ? " les hivers rigoureux nécessitent un modèle haute température (65°C) pour garantir un confort optimal. Les aides MaPrimeRénov' y sont plus généreuses pour compenser le surcoût d'équipement." :
-             zone === 'H3' ? " le climat méditerranéen doux permet d'utiliser un modèle standard avec un COP saisonnier exceptionnel, souvent supérieur à 4. C'est la zone la plus rentable de France pour la PAC air/eau." :
-             " le climat tempéré offre un excellent compromis entre performance et coût d'installation. Un modèle standard 55°C convient dans la plupart des cas."}
-          </p>
-          <p>
-            Le prix moyen d'une {siteConfig.niche.nameShort.toLowerCase()} dans le {city.deptName} se situe entre
-            <strong>{zone === 'H1' ? '10 500€ et 16 000€' : zone === 'H3' ? '8 500€ et 13 000€' : '9 500€ et 14 500€'}</strong> TTC pose comprise.
-            Après déduction des aides (MaPrimeRénov' + CEE + TVA 5,5%), le reste à charge
-            moyen est de <strong>{zone === 'H1' ? '4 000€ à 8 000€' : zone === 'H3' ? '3 000€ à 6 000€' : '3 500€ à 7 000€'}</strong>.
+            Le prix moyen d'un ragréage dans le {city.deptName} se situe entre
+            <strong>15 et 45 €/m²</strong> TTC, fournitures et main d'œuvre comprises.
+            Ce tarif varie en fonction de l'état du support existant, de l'épaisseur à rattraper
+            et de la classe UPEC requise (P3 pour usage résidentiel standard, P4 pour zones à fort passage).
           </p>
         </div>
       </section>
@@ -242,125 +242,14 @@ const sectionOrder = [0, 1, 2, 3, 4].sort((a, b) => {
     <section>
       <p class="text-sm text-gray-500 mb-4">
         💡 Les prix ci-dessous sont des moyennes nationales. À {city.name} ({city.region}),
-        les tarifs peuvent varier de ±{zone === 'H1' ? '15' : zone === 'H3' ? '10' : '10'}% selon
-        l'accessibilité du chantier, la puissance nécessaire et la marque choisie.
+        les tarifs peuvent varier de ±10% selon
+        l'état du support, l'épaisseur à rattraper et le type de ragréage choisi.
       </p>
       <PriceTable />
     </section>
 
-    {/* Section: Detailed Technical Guide */}
-    <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">
-        ⚙️ Guide technique : choisir sa {siteConfig.niche.nameShort} à {city.name}
-      </h2>
-      <div class="prose max-w-none text-gray-600 space-y-6">
-        <div>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">Quelle puissance pour votre logement ?</h3>
-          <p>
-            Le dimensionnement est crucial pour le rendement et la longévité de votre {siteConfig.niche.nameShort.toLowerCase()}.
-            En {city.region} (zone {zone}), comptez :
-          </p>
-          <ul class="space-y-2 mt-3">
-            <li class="flex items-start gap-2">
-              <span class="text-brand-600 font-bold">→</span>
-              <span><strong>80-100 W/m²</strong> pour une maison bien isolée (BBC, RT2012 ou rénovation récente)</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-brand-600 font-bold">→</span>
-              <span><strong>120-150 W/m²</strong> pour une maison moyennement isolée (avant 2000, DPE D-E)</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-brand-600 font-bold">→</span>
-              <span><strong>150-200 W/m²</strong> pour une passoire thermique (avant 1975, DPE F-G)</span>
-            </li>
-          </ul>
-          <p class="mt-3">
-            <strong>Exemple</strong> : pour une maison de 130m² à {city.name} avec isolation correcte,
-            il faut une PAC de {zone === 'H1' ? '13 à 16 kW' : zone === 'H3' ? '10 à 13 kW' : '11 à 14 kW'}.
-            Un bilan thermique professionnel (inclus dans nos devis gratuits) est indispensable.
-          </p>
-        </div>
+    {/* Section: Detailed Technical Guide for Ragréage (Placeholder if needed, or removed) */}
 
-        <div>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">Les marques recommandées par nos installateurs à {city.name}</h3>
-          <div class="grid sm:grid-cols-2 gap-4 mt-3">
-            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
-              <h4 class="font-bold text-gray-900">🇫🇷 Atlantic (Alfea Excellia AI)</h4>
-              <p class="text-sm text-gray-600 mt-1">Fabricant français, excellent SAV. Modèle connecté avec pilotage intelligent. Idéal en rénovation.</p>
-              <span class="text-xs text-brand-600 font-medium mt-2 block">À partir de 9 500€ TTC posé</span>
-            </div>
-            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
-              <h4 class="font-bold text-gray-900">🇯🇵 Daikin (Altherma 3 H)</h4>
-              <p class="text-sm text-gray-600 mt-1">Leader mondial, fiabilité légendaire. Fonctionne jusqu'à -25°C. Idéal en {zone === 'H1' ? 'zone froide' : 'toutes zones'}.</p>
-              <span class="text-xs text-brand-600 font-medium mt-2 block">À partir de 10 500€ TTC posé</span>
-            </div>
-            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
-              <h4 class="font-bold text-gray-900">🇯🇵 Mitsubishi (Ecodan)</h4>
-              <p class="text-sm text-gray-600 mt-1">Technologie Zubadan pour climate froid. Ultra-silencieux (< 45 dB). Garantie compresseur 7 ans.</p>
-              <span class="text-xs text-brand-600 font-medium mt-2 block">À partir de 10 000€ TTC posé</span>
-            </div>
-            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
-              <h4 class="font-bold text-gray-900">🇩🇪 Bosch (Compress 7000i)</h4>
-              <p class="text-sm text-gray-600 mt-1">Qualité allemande, excellent rapport qualité/prix. Interface simple et intégration domotique.</p>
-              <span class="text-xs text-brand-600 font-medium mt-2 block">À partir de 8 500€ TTC posé</span>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">PAC Air/Eau vs autres solutions à {city.name}</h3>
-          <div class="overflow-x-auto">
-            <table class="w-full text-sm border-collapse">
-              <thead>
-                <tr class="bg-gray-50 text-gray-500 border-b border-gray-200">
-                  <th class="px-4 py-3 text-left font-semibold">Solution</th>
-                  <th class="px-4 py-3 text-left font-semibold">Coût annuel (130m²)</th>
-                  <th class="px-4 py-3 text-left font-semibold">Émissions CO₂</th>
-                  <th class="px-4 py-3 text-left font-semibold">Confort</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-100">
-                <tr class="bg-green-50 font-semibold">
-                  <td class="px-4 py-3 text-green-800">✅ PAC Air/Eau</td>
-                  <td class="px-4 py-3 text-green-700">{zone === 'H1' ? '800 – 1 200€' : zone === 'H3' ? '500 – 800€' : '600 – 1 000€'}</td>
-                  <td class="px-4 py-3 text-green-700">~30 gCO₂/kWh</td>
-                  <td class="px-4 py-3 text-green-700">⭐⭐⭐⭐⭐</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-3">Chaudière gaz condensation</td>
-                  <td class="px-4 py-3">{zone === 'H1' ? '1 800 – 2 500€' : '1 200 – 1 800€'}</td>
-                  <td class="px-4 py-3">~227 gCO₂/kWh</td>
-                  <td class="px-4 py-3">⭐⭐⭐⭐</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-3">Chaudière fioul</td>
-                  <td class="px-4 py-3">{zone === 'H1' ? '2 500 – 3 500€' : '1 800 – 2 500€'}</td>
-                  <td class="px-4 py-3">~324 gCO₂/kWh</td>
-                  <td class="px-4 py-3">⭐⭐⭐</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-3">Radiateurs électriques</td>
-                  <td class="px-4 py-3">{zone === 'H1' ? '2 800 – 4 000€' : '1 500 – 2 500€'}</td>
-                  <td class="px-4 py-3">~60 gCO₂/kWh</td>
-                  <td class="px-4 py-3">⭐⭐</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">Déroulement de l'installation à {city.name}</h3>
-          <ol class="space-y-3 mt-3 list-decimal list-inside">
-            <li><strong>Visite technique gratuite</strong> — L'installateur RGE évalue votre logement, réalise le bilan thermique et détermine la puissance nécessaire. Durée : 1h-1h30.</li>
-            <li><strong>Devis détaillé</strong> — Vous recevez un devis précisant la marque, le modèle, la puissance, les aides déductibles et le reste à charge. Vous comparez nos 3 devis.</li>
-            <li><strong>Montage du dossier d'aides</strong> — L'artisan vous aide à constituer les dossiers MaPrimeRénov' et CEE. Il ne faut PAS signer avant d'avoir déposé les demandes.</li>
-            <li><strong>Installation</strong> — Pose de l'unité extérieure, raccordement hydraulique au circuit de chauffage, mise en service. Durée : 2-3 jours.</li>
-            <li><strong>Mise en service & formation</strong> — Le technicien configure la PAC, programme les courbes de chauffe et vous explique le fonctionnement du thermostat.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
 
     {/* Section: Process Steps */}
     <ProcessSteps />
@@ -380,7 +269,7 @@ const sectionOrder = [0, 1, 2, 3, 4].sort((a, b) => {
       <h2 class="text-2xl font-bold text-gray-900 mb-2">
         📍 {siteConfig.niche.nameShort} près de {city.name}
       </h2>
-      <p class="text-gray-500 text-sm mb-6">Nos installateurs interviennent aussi dans ces villes du {city.deptName}</p>
+      <p class="text-gray-500 text-sm mb-6">Nos artisans interviennent aussi dans ces villes du {city.deptName}</p>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {nearbyCities.map((nc) => (
           <a
@@ -392,6 +281,30 @@ const sectionOrder = [0, 1, 2, 3, 4].sort((a, b) => {
           </a>
         ))}
       </div>
+      <div class="text-center mt-4">
+        <a href={`/departement/${city.deptCode.toLowerCase()}`} class="text-brand-600 hover:text-brand-700 font-semibold text-sm">
+          Voir toutes les villes du {city.deptName} ({city.deptCode}) →
+        </a>
+      </div>
+    </section>
+
+    {/* MAILLAGE: Blog Guides */}
+    <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">
+        📚 Guides Ragréage — À lire avant vos travaux
+      </h2>
+      <div class="grid sm:grid-cols-3 gap-4">
+        {blogArticles.slice(seed % 2, (seed % 2) + 3).map(a => (
+          <a href={`/blog/${a.slug}`} class="bg-gray-50 border border-gray-200 rounded-xl p-4 hover:border-brand-300 hover:shadow-md transition-all group">
+            <span class="text-2xl block mb-2">{a.emoji}</span>
+            <span class="text-xs text-brand-600 font-medium">{a.category}</span>
+            <h3 class="font-semibold text-gray-900 group-hover:text-brand-600 text-sm mt-1 line-clamp-2">{a.title}</h3>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-4">
+        <a href="/blog" class="text-brand-600 hover:text-brand-700 font-semibold text-sm">Voir tous nos guides →</a>
+      </div>
     </section>
 
     {/* Section: Final CTA */}
@@ -401,7 +314,7 @@ const sectionOrder = [0, 1, 2, 3, 4].sort((a, b) => {
           Obtenez vos 3 devis {siteConfig.niche.nameShort} à {city.name}
         </h2>
         <p class="text-brand-100 mb-5 text-sm">
-          Gratuit • Sans engagement • Artisans RGE du {city.deptName}
+          Gratuit • Sans engagement • Artisans qualifiés du {city.deptName}
         </p>
         <a href="/devis" class="inline-block bg-white text-brand-700 font-bold px-8 py-3.5 rounded-xl hover:bg-brand-50 transition-colors shadow-lg">
           Demander mes devis →

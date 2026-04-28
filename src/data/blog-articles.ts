@@ -1,6 +1,5 @@
 /**
- * Blog articles data — 5 pillar articles for SEO
- * Each article targets a high-volume informational keyword
+ * Blog articles data — 8 pillar articles for SEO
  */
 
 export interface BlogArticle {
@@ -19,408 +18,310 @@ export interface BlogArticle {
 
 export const blogArticles: BlogArticle[] = [
   {
-    slug: "prix-pompe-a-chaleur-air-eau",
-    title: "Prix d'une Pompe à Chaleur Air/Eau en 2026 : Guide Complet",
-    metaTitle: "Prix Pompe à Chaleur Air/Eau 2026 — Tarifs, Aides & Devis",
-    metaDescription: "Quel est le prix d'une pompe à chaleur air/eau en 2026 ? De 8 000€ à 18 000€ TTC selon la puissance. Guide complet : tarifs par marque, aides MaPrimeRénov', CEE et reste à charge réel.",
-    excerpt: "De 8 000€ à 18 000€ TTC pose comprise en 2026. Découvrez les prix détaillés par puissance, marque et type d'installation, et calculez votre reste à charge après aides.",
-    date: "2026-01-15",
-    readTime: "12 min",
+    slug: "prix-detaille-ragreage-2026",
+    title: "Prix détaillé ragréage 2026 : budget complet et exemples",
+    metaTitle: "Prix d'un Ragréage en 2026 : Budget et Tarifs au m²",
+    metaDescription: "Quel est le vrai prix d'un ragréage en 2026 ? De 15 à 45 €/m². Découvrez les tarifs détaillés selon le type de produit (autolissant, autonivelant) et la pose.",
+    excerpt: "Le ragréage coûte en moyenne entre 15 et 45 €/m² pose comprise. Découvrez les facteurs qui influencent le prix, les différents produits et des exemples de devis réels.",
+    date: "2026-01-10",
+    readTime: "8 min",
     category: "Prix",
     emoji: "💰",
-    image: "/images/blog/hero-pac-maison.png",
+    image: "/images/blog/ragreage-prix.jpg",
     content: `
-<p>Le prix d'une <strong>pompe à chaleur air/eau</strong> varie entre <strong>8 000€ et 18 000€ TTC</strong> pose comprise en 2026. Cette fourchette large s'explique par les différences de puissance (8 à 16 kW), de marque (Atlantic, Daikin, Mitsubishi, Bosch), et de complexité d'installation. Mais grâce aux aides de l'État, le <strong>reste à charge réel peut descendre sous les 5 000€</strong>.</p>
+<p>Vous prévoyez de poser un nouveau revêtement de sol (carrelage, parquet, sol PVC) et vous vous demandez combien coûte l'étape indispensable du <strong>ragréage</strong> ? En 2026, le prix d'un ragréage varie généralement entre <strong>15 € et 45 € le m²</strong>, main-d'œuvre et matériaux compris. Ce tarif dépend de l'état de votre sol, du type d'enduit utilisé et de la surface totale à traiter.</p>
 
-<h2>Prix d'une PAC air/eau par puissance en 2026</h2>
-<p>Le premier critère qui détermine le prix est la <strong>puissance nécessaire</strong>, elle-même liée à la surface de votre logement et à son isolation :</p>
-
-<table>
-<thead><tr><th>Puissance</th><th>Surface indicative</th><th>Prix TTC posé</th><th>Cas d'usage</th></tr></thead>
-<tbody>
-<tr><td><strong>6-8 kW</strong></td><td>60-90 m²</td><td>7 000 – 10 000€</td><td>Appartement ou petite maison bien isolée</td></tr>
-<tr><td><strong>8-10 kW</strong></td><td>90-120 m²</td><td>8 000 – 12 000€</td><td>Maison standard, chauffage seul</td></tr>
-<tr><td><strong>10-14 kW</strong></td><td>120-160 m²</td><td>10 000 – 15 000€</td><td>Maison familiale, chauffage + ECS</td></tr>
-<tr><td><strong>14-16 kW</strong></td><td>160-200 m²</td><td>12 000 – 18 000€</td><td>Grande maison ou isolation faible</td></tr>
-</tbody>
-</table>
-
-<p>💡 <strong>Règle d'or</strong> : ne jamais surdimensionner votre PAC. Une PAC trop puissante coûte plus cher à l'achat ET consomme plus par des cycles courts répétés (phénomène de « cycling »). Le bilan thermique préalable est indispensable.</p>
-
-<h2>Prix par marque : comparatif 2026</h2>
-<p>Les prix varient significativement selon la marque choisie. Voici un comparatif des 6 marques les plus installées en France :</p>
-
-<table>
-<thead><tr><th>Marque</th><th>Modèle phare</th><th>Prix 10-14 kW posé</th><th>Points forts</th></tr></thead>
-<tbody>
-<tr><td>🇫🇷 <strong>Atlantic</strong></td><td>Alfea Excellia AI</td><td>10 500 – 14 000€</td><td>Fabrication française, SAV réactif, pilotage IA</td></tr>
-<tr><td>🇯🇵 <strong>Daikin</strong></td><td>Altherma 3 H</td><td>11 000 – 15 000€</td><td>Leader mondial, fiabilité, fonctionne jusqu'à -25°C</td></tr>
-<tr><td>🇯🇵 <strong>Mitsubishi</strong></td><td>Ecodan Zubadan</td><td>10 500 – 14 500€</td><td>Technologie Zubadan (grand froid), ultra-silencieux</td></tr>
-<tr><td>🇩🇪 <strong>Bosch</strong></td><td>Compress 7000i AW</td><td>9 000 – 12 500€</td><td>Excellent rapport qualité/prix, interface simple</td></tr>
-<tr><td>🇩🇪 <strong>Viessmann</strong></td><td>Vitocal 200-A</td><td>10 000 – 13 500€</td><td>Robustesse allemande, réseau SAV dense</td></tr>
-<tr><td>🇫🇷 <strong>De Dietrich</strong></td><td>Alezio V220</td><td>9 500 – 13 000€</td><td>Fabricant français historique, fiable</td></tr>
-</tbody>
-</table>
-
-<h2>Coûts annexes à prévoir</h2>
-<p>Le prix de la PAC seule ne suffit pas. Prévoyez ces postes supplémentaires :</p>
+<h2>Les différents types de ragréage et leurs prix</h2>
+<p>Le choix du produit impacte directement la facture. Il existe principalement deux types de mortiers de ragréage :</p>
 <ul>
-<li><strong>Ballon tampon (200-300L)</strong> : 800 – 1 500€ — recommandé pour optimiser les cycles</li>
-<li><strong>Ballon ECS thermodynamique</strong> : 1 200 – 2 500€ — si production d'eau chaude intégrée</li>
-<li><strong>Dépose de l'ancienne chaudière</strong> : 500 – 1 500€ — incluse dans la plupart des devis</li>
-<li><strong>Modification du circuit hydraulique</strong> : 500 – 3 000€ — si passage en plancher chauffant</li>
-<li><strong>Dalle béton pour unité extérieure</strong> : 200 – 600€</li>
-<li><strong>Contrat de maintenance annuel</strong> : 150 – 300€/an — obligatoire depuis 2020</li>
+<li><strong>Ragréage autolissant (15 à 25 €/m²)</strong> : C'est le plus courant. Très fluide, il s'étale de lui-même et convient pour corriger des défauts de planéité mineurs (creux de moins de 10 mm). Il est idéal pour des pièces de vie avec de légères irrégularités.</li>
+<li><strong>Ragréage autonivelant (25 à 40 €/m²)</strong> : Plus épais et souvent enrichi de fibres, il est conçu pour combler des différences de niveau importantes (de 10 à 30 mm, voire plus). Ce type de produit est indispensable pour les vieilles maisons ou les supports très abîmés.</li>
 </ul>
 
-<h2>Reste à charge après aides en 2026</h2>
-<p>Les aides cumulables permettent de réduire drastiquement le coût :</p>
+<h2>Les coûts annexes à ne pas oublier</h2>
+<p>Le devis de votre artisan comprendra souvent d'autres postes de dépenses indispensables pour un travail de qualité :</p>
+<ul>
+<li><strong>La préparation du support</strong> : Un sol doit être propre, sec, dépoussiéré et dégraissé. Si un ancien revêtement doit être retiré ou si le sol nécessite un ponçage intensif, comptez entre 5 et 15 €/m² supplémentaires.</li>
+<li><strong>Le primaire d'accrochage</strong> : Facturé entre 2 et 5 €/m², ce produit liquide est appliqué avant le ragréage pour réguler la porosité du sol et garantir une parfaite adhérence du mortier.</li>
+<li><strong>Le ragréage fibré pour sols souples</strong> : Si vous posez le ragréage sur un vieux plancher en bois, l'utilisation d'un enduit fibré (renforcé de fibres synthétiques) est obligatoire pour supporter la souplesse du bois. Prévoyez un surcoût d'environ 10 à 15 €/m².</li>
+</ul>
 
+<h2>Exemple de devis pour 50 m²</h2>
+<p>Pour la rénovation d'un salon de 50 m² avec de petits défauts (ragréage autolissant), voici un exemple représentatif en 2026 :</p>
 <table>
-<thead><tr><th>Profil de revenus</th><th>MaPrimeRénov'</th><th>CEE</th><th>TVA 5,5%</th><th>Reste à charge (PAC à 13 000€)</th></tr></thead>
+<thead><tr><th>Prestation</th><th>Prix unitaire</th><th>Total TTC</th></tr></thead>
 <tbody>
-<tr><td><strong>Très modestes</strong></td><td>11 000€</td><td>4 000€</td><td>~950€</td><td><strong>≈ 0 – 2 000€</strong> 🟢</td></tr>
-<tr><td><strong>Modestes</strong></td><td>8 000€</td><td>4 000€</td><td>~950€</td><td><strong>≈ 1 000 – 4 000€</strong></td></tr>
-<tr><td><strong>Intermédiaires</strong></td><td>4 000€</td><td>2 500€</td><td>~950€</td><td><strong>≈ 5 500 – 8 000€</strong></td></tr>
-<tr><td><strong>Aisés</strong></td><td>0€</td><td>2 500€</td><td>~950€</td><td><strong>≈ 9 500 – 12 000€</strong></td></tr>
+<tr><td>Préparation et dépoussiérage</td><td>5 €/m²</td><td>250 €</td></tr>
+<tr><td>Application primaire d'accrochage</td><td>3 €/m²</td><td>150 €</td></tr>
+<tr><td>Ragréage autolissant (fourniture et pose)</td><td>17 €/m²</td><td>850 €</td></tr>
+<tr><td><strong>TOTAL estimé</strong></td><td><strong>25 €/m²</strong></td><td><strong>1 250 €</strong></td></tr>
 </tbody>
 </table>
-
-<p>➕ <strong>L'Éco-PTZ</strong> permet de financer le reste à charge avec un prêt à taux 0% jusqu'à 50 000€ sur 20 ans. Résultat : <strong>aucun frais d'avance</strong> pour de nombreux foyers.</p>
-
-<h2>Comment obtenir le meilleur prix ?</h2>
-<ol>
-<li><strong>Comparez 3 devis minimum</strong> — les écarts de prix peuvent atteindre 30% pour la même prestation</li>
-<li><strong>Vérifiez la certification RGE</strong> — obligatoire pour bénéficier de toutes les aides</li>
-<li><strong>Privilégiez les installateurs locaux</strong> — déplacement moins cher, SAV plus rapide</li>
-<li><strong>Négociez le contrat de maintenance</strong> — souvent offert la 1ère année si vous insistez</li>
-<li><strong>Évitez les offres « à 1€ »</strong> — elles n'existent plus depuis 2022 et masquent souvent du matériel bas de gamme</li>
-</ol>
+<p>Pour obtenir un budget précis, la meilleure démarche reste de comparer au moins 3 devis d'artisans locaux, car les prix varient selon les régions et la complexité d'accès au chantier.</p>
 `
   },
   {
-    slug: "aides-maprimenov-pac-2026",
-    title: "Aides MaPrimeRénov' PAC Air/Eau 2026 : Montants, Conditions & Cumul",
-    metaTitle: "Aides MaPrimeRénov' PAC Air/Eau 2026 — Montants & Conditions",
-    metaDescription: "Toutes les aides pour installer une PAC air/eau en 2026 : MaPrimeRénov' (jusqu'à 11 000€), CEE, TVA 5,5%, Éco-PTZ. Conditions, plafonds et cumul expliqués simplement.",
-    excerpt: "MaPrimeRénov', CEE, TVA 5,5%, Éco-PTZ... Jusqu'à 16 000€ d'aides cumulées pour votre pompe à chaleur air/eau. Guide complet des conditions et montants 2026.",
-    date: "2026-01-20",
-    readTime: "10 min",
+    slug: "criteres-choix-installateur-ragreage",
+    title: "Les critères pour bien choisir son installateur de ragréage",
+    metaTitle: "Comment Choisir un Artisan pour son Ragréage ?",
+    metaDescription: "Ne confiez pas votre sol à n'importe qui. Découvrez les 5 critères essentiels pour choisir le bon artisan ou maçon pour vos travaux de ragréage.",
+    excerpt: "Assurance décennale, références, devis détaillé... Voici tous les points de vigilance pour choisir un professionnel compétent et éviter les mauvaises surprises.",
+    date: "2026-01-22",
+    readTime: "6 min",
+    category: "Guide",
+    emoji: "🔍",
+    image: "/images/blog/ragreage-artisan.jpg",
+    content: `
+<p>Le ragréage est une opération technique qui demande un savoir-faire précis. Une mauvaise préparation du support, un mauvais dosage de l'eau ou un étalement hasardeux peuvent ruiner le travail et rendre impossible la pose correcte de votre futur revêtement. Voici comment bien choisir le professionnel à qui confier cette tâche.</p>
+
+<h2>1. Vérifier les qualifications et assurances</h2>
+<p>Le premier réflexe doit être de vérifier la solidité administrative de l'entreprise. Un artisan sérieux doit obligatoirement posséder une <strong>assurance garantie décennale</strong> et une assurance responsabilité civile professionnelle (RC Pro). Demandez une copie de l'attestation avant la signature du devis et vérifiez que les "travaux de revêtement de sol" ou de "maçonnerie intérieure" sont bien couverts.</p>
+
+<h2>2. L'expérience et les références locales</h2>
+<p>Privilégiez un maçon, un carreleur ou un solier expérimenté. Le ragréage n'est souvent pas leur seule activité, mais c'est une étape qu'ils maîtrisent car elle précède leur cœur de métier. N'hésitez pas à :</p>
+<ul>
+<li>Demander des photos de chantiers récents</li>
+<li>Chercher des avis en ligne sur Google ou des plateformes spécialisées</li>
+<li>Vous renseigner sur le nombre d'années d'existence de l'entreprise</li>
+</ul>
+
+<h2>3. La clarté et le détail du devis</h2>
+<p>Un bon professionnel se reconnaît à la précision de son devis. Méfiez-vous d'une simple ligne "Ragréage sol : 1000 €". Un devis dans les règles de l'art doit stipuler :</p>
+<ul>
+<li>La préparation du support (ponçage, nettoyage)</li>
+<li>L'application obligatoire d'un primaire d'accrochage</li>
+<li>Le type de produit utilisé (autolissant, autonivelant, fibré) et la marque (ex: Weber, Parexlanko, Bostik)</li>
+<li>L'épaisseur moyenne estimée en millimètres</li>
+<li>Le prix de la main-d'œuvre distingué de celui des fournitures</li>
+</ul>
+
+<h2>4. La visite technique préalable</h2>
+<p>Il est <strong>impossible</strong> de chiffrer sérieusement un ragréage sans voir le sol. L'artisan doit se déplacer chez vous pour évaluer la planéité (avec une règle de 2m), tester la porosité du support, repérer d'éventuelles fissures à traiter, et mesurer le taux d'humidité. Fuyez les entreprises qui vous envoient un devis définitif sur simple description téléphonique.</p>
+
+<h2>5. La capacité de conseil</h2>
+<p>Un bon professionnel saura vous alerter si un ragréage n'est pas nécessaire (si la colle à carrelage suffit pour rattraper les défauts) ou si, au contraire, un ragréage fibré est impératif car votre support (vieux plancher) est trop souple. Son rôle de conseil est primordial pour la durabilité de votre ouvrage.</p>
+`
+  },
+  {
+    slug: "comment-comparer-devis-ragreage",
+    title: "Comment comparer les devis de ragréage efficacement ?",
+    metaTitle: "Comparatif Devis Ragréage : Pièges et Astuces 2026",
+    metaDescription: "Vous avez reçu plusieurs devis pour votre ragréage et ne savez pas lequel choisir ? Apprenez à décrypter les offres pour faire le meilleur choix au juste prix.",
+    excerpt: "Épaisseur, type de mortier, préparation du support... Découvrez comment lire entre les lignes de vos devis de ragréage pour choisir la meilleure offre.",
+    date: "2026-02-05",
+    readTime: "7 min",
+    category: "Conseils",
+    emoji: "⚖️",
+    image: "/images/blog/ragreage-devis.jpg",
+    content: `
+<p>Vous avez utilisé notre service de mise en relation et vous voilà avec trois devis différents pour votre ragréage. Les montants peuvent parfois varier du simple au double. Comment expliquer ces écarts et surtout, comment faire le bon choix ? Voici la méthode pour comparer efficacement vos devis de ragréage.</p>
+
+<h2>1. Comparez ce qui est comparable : la préparation du support</h2>
+<p>L'écart de prix entre deux artisans se situe souvent dans le soin apporté à la <strong>préparation</strong>. Si le devis A est 30% moins cher que le devis B, vérifiez que le devis A inclut bien :</p>
+<ul>
+<li>Le grattage ou le rebouchage préalable des grosses fissures</li>
+<li>Le nettoyage et le dégraissage complet du sol</li>
+<li>L'application du primaire d'accrochage (indispensable !)</li>
+</ul>
+<p>Un ragréage coulé sur un sol poussiéreux ou poreux finira par fissurer et se décoller, entraînant avec lui votre revêtement neuf.</p>
+
+<h2>2. Identifiez le type de produit proposé</h2>
+<p>Le devis doit mentionner clairement le type d'enduit de sol. Un artisan qui prévoit un mortier <strong>autonivelant fibré</strong> (nécessaire sur support bois ou sol très abîmé) sera logiquement plus cher que celui qui chiffre un simple mortier <strong>autolissant standard</strong>. Assurez-vous que tous les artisans ont fait le même diagnostic technique de votre sol.</p>
+
+<h2>3. L'épaisseur du ragréage</h2>
+<p>Le coût des matériaux dépend directement de l'épaisseur à couler. Un ragréage de 3 mm d'épaisseur nécessite beaucoup moins de sacs de poudre qu'un ragréage de 15 mm. Si un devis est particulièrement élevé, l'artisan a peut-être estimé qu'il fallait une épaisseur plus importante pour rattraper les niveaux. N'hésitez pas à leur poser la question directement.</p>
+
+<h2>4. Les petits "plus" qui font la différence</h2>
+<p>D'autres éléments peuvent justifier une variation de prix :</p>
+<ul>
+<li><strong>La protection du chantier</strong> : protection des plinthes, des murs et des portes.</li>
+<li><strong>L'évacuation des gravats</strong> : particulièrement si un ancien revêtement a dû être déposé.</li>
+<li><strong>Les délais d'intervention</strong> : une entreprise très demandée ou qui s'engage sur un délai très court peut facturer une prime.</li>
+</ul>
+
+<h2>Conclusion : Méfiez-vous du moins-disant</h2>
+<p>Le devis le moins cher n'est pas toujours le meilleur choix, surtout s'il fait l'impasse sur le primaire d'accrochage ou la préparation du sol. Optez pour le devis le plus <strong>détaillé</strong> et le plus <strong>transparent</strong>, émis par un artisan qui a pris le temps de diagnostiquer votre sol en profondeur lors de sa visite.</p>
+`
+  },
+  {
+    slug: "aides-subventions-ragreage-2026",
+    title: "Aides financières et subventions possibles pour ragréage en 2026",
+    metaTitle: "Aides pour Ragréage 2026 : TVA réduite, ANAH, Prime",
+    metaDescription: "Peut-on obtenir des aides de l'État pour financer un ragréage ? TVA à 10%, subventions de l'ANAH... Découvrez vos droits pour réduire la facture.",
+    excerpt: "Bien qu'il ne soit pas une opération d'isolation, le ragréage peut bénéficier d'aides (TVA réduite, ANAH) s'il s'inscrit dans un projet de rénovation global.",
+    date: "2026-02-18",
+    readTime: "5 min",
     category: "Aides",
     emoji: "🏛️",
-    image: "/images/blog/hero-pac-maison.png",
+    image: "/images/blog/ragreage-aides.jpg",
     content: `
-<p>L'installation d'une <strong>pompe à chaleur air/eau</strong> en 2026 bénéficie de <strong>jusqu'à 16 000€ d'aides cumulées</strong>. Entre MaPrimeRénov', les Certificats d'Économies d'Énergie (CEE), la TVA réduite et l'Éco-PTZ, le reste à charge peut descendre sous les 2 000€ pour les foyers les plus modestes. Voici le guide complet.</p>
+<p>Les travaux de second œuvre comme le ragréage représentent un coût non négligeable. Bien qu'un ragréage seul ne soit pas directement éligible aux grandes primes écologiques (comme MaPrimeRénov'), il existe des dispositifs permettant de faire baisser la facture, notamment lorsqu'il s'intègre dans un projet plus global de rénovation ou d'adaptation du logement en 2026.</p>
 
-<h2>MaPrimeRénov' 2026 : jusqu'à 11 000€</h2>
-<p>MaPrimeRénov' est l'aide principale de l'État pour la rénovation énergétique. Pour une PAC air/eau, les montants 2026 sont :</p>
-
-<table>
-<thead><tr><th>Profil de revenus</th><th>Montant MaPrimeRénov'</th><th>Plafond de revenus (Île-de-France)</th><th>Plafond (Province)</th></tr></thead>
-<tbody>
-<tr><td>🔵 <strong>Très modestes</strong></td><td><strong>11 000€</strong></td><td>23 541€ (1 pers.)</td><td>17 009€ (1 pers.)</td></tr>
-<tr><td>🟡 <strong>Modestes</strong></td><td><strong>8 000€</strong></td><td>28 657€ (1 pers.)</td><td>21 805€ (1 pers.)</td></tr>
-<tr><td>🟣 <strong>Intermédiaires</strong></td><td><strong>4 000€</strong></td><td>40 018€ (1 pers.)</td><td>30 549€ (1 pers.)</td></tr>
-<tr><td>🔴 <strong>Aisés</strong></td><td><strong>0€</strong></td><td>> 40 018€</td><td>> 30 549€</td></tr>
-</tbody>
-</table>
-
-<h3>Conditions d'éligibilité</h3>
+<h2>1. La TVA à taux réduit (10%)</h2>
+<p>C'est l'aide la plus facile à obtenir. Si vous confiez l'achat du matériel et la pose à un artisan professionnel, vous pouvez bénéficier de la <strong>TVA intermédiaire à 10 %</strong> au lieu de 20 %. Pour y avoir droit, les conditions sont simples :</p>
 <ul>
-<li>Logement construit depuis <strong>plus de 15 ans</strong> (ou 2 ans si remplacement de chaudière fioul)</li>
-<li>Résidence principale occupée au moins <strong>8 mois par an</strong></li>
-<li>Travaux réalisés par un artisan <strong>certifié RGE</strong></li>
-<li>PAC air/eau de <strong>COP ≥ 3,4</strong> (tous les modèles récents le sont)</li>
-<li>Demande déposée <strong>AVANT la signature du devis</strong> — crucial !</li>
+<li>Votre logement (maison ou appartement) doit être achevé depuis plus de 2 ans.</li>
+<li>Il doit s'agir de locaux affectés à l'habitation.</li>
+<li>Les travaux doivent être facturés par l'entreprise (pas de TVA réduite si vous achetez vous-même les sacs de ragréage chez Leroy Merlin).</li>
 </ul>
+<p>À noter : si le ragréage est la conséquence <em>directe et indispensable</em> de travaux d'amélioration énergétique (ex: isolation du plancher bas, pose d'un plancher chauffant relié à une PAC), la TVA peut même descendre à <strong>5,5 %</strong> (taux induit).</p>
 
-<h2>Prime CEE (Certificats d'Économies d'Énergie) : 2 500 à 5 000€</h2>
-<p>La prime CEE est financée par les fournisseurs d'énergie (EDF, Engie, Total...) et est <strong>cumulable avec MaPrimeRénov'</strong>.</p>
+<h2>2. Les aides de l'ANAH (MaPrimeRénov' Sérénité / Parcours Accompagné)</h2>
+<p>L'Agence Nationale de l'Habitat peut subventionner des travaux de rénovation globale. Si le ragréage fait partie d'une <strong>rénovation d'ampleur</strong> qui permet un gain énergétique de deux classes sur le DPE (par exemple, isolation du sol par-dessus l'ancienne dalle + ragréage + nouveau revêtement), son coût peut être intégré dans l'enveloppe globale subventionnée jusqu'à 50 % ou 65 % selon vos revenus.</p>
 
-<table>
-<thead><tr><th>Zone climatique</th><th>Revenus modestes</th><th>Revenus standards</th></tr></thead>
-<tbody>
-<tr><td>H1 (Nord, Est, Montagne)</td><td><strong>4 000 – 5 000€</strong></td><td>2 500 – 3 500€</td></tr>
-<tr><td>H2 (Centre, Ouest)</td><td><strong>3 000 – 4 000€</strong></td><td>2 000 – 3 000€</td></tr>
-<tr><td>H3 (Méditerranée)</td><td><strong>2 500 – 3 500€</strong></td><td>1 500 – 2 500€</td></tr>
-</tbody>
-</table>
-
-<p>⚠️ <strong>Attention</strong> : ne signez JAMAIS votre devis avant d'avoir reçu l'offre CEE. Sinon, vous perdez la prime.</p>
-
-<h2>TVA réduite à 5,5%</h2>
-<p>La TVA sur le matériel ET la main d'œuvre est réduite à 5,5% (au lieu de 20%) si :</p>
+<h2>3. MaPrimeAdapt' : pour l'autonomie</h2>
+<p>Lancée récemment et consolidée en 2026, <strong>MaPrimeAdapt'</strong> vise à adapter le logement pour les personnes âgées ou en situation de handicap. Si le ragréage est nécessaire pour :</p>
 <ul>
-<li>Le logement a <strong>plus de 2 ans</strong></li>
-<li>Les travaux sont réalisés par un <strong>professionnel</strong></li>
-<li>Il s'agit de votre <strong>résidence principale ou secondaire</strong></li>
+<li>Supprimer des marches ou des seuils de portes dangereux</li>
+<li>Aplanir un sol pour permettre le passage d'un fauteuil roulant</li>
+<li>Créer un sol parfaitement plat pour installer une douche de plain-pied (douche italienne)</li>
 </ul>
-<p>Pour une PAC à 13 000€ HT, l'économie est de <strong>~1 900€</strong> (5,5% vs 20%).</p>
+<p>Dans ces cas précis de maintien à domicile, l'ANAH peut financer de 50 à 70 % du coût des travaux, ragréage inclus, sous condition de ressources.</p>
 
-<h2>Éco-PTZ : jusqu'à 50 000€ à taux 0%</h2>
-<p>L'Éco-Prêt à Taux Zéro permet de financer le reste à charge <strong>sans intérêts</strong> :</p>
+<h2>Comment procéder ?</h2>
+<p>Pour ne passer à côté d'aucune aide, informez toujours votre artisan de la finalité de vos travaux. Il saura appliquer la TVA correspondante sur son devis. Pour les subventions de l'ANAH, montez toujours votre dossier et attendez l'accord <strong>avant</strong> de signer le devis ou de démarrer les travaux de ragréage.</p>
+`
+  },
+  {
+    slug: "top-5-erreurs-ragreage",
+    title: "Top 5 des erreurs à éviter pour vos travaux de ragréage",
+    metaTitle: "Ragréage Sol : Les 5 Erreurs à Éviter Absolument",
+    metaDescription: "Oubli de primaire, mauvais dosage, mauvais diagnostic... Découvrez les erreurs fatales qui peuvent ruiner un ragréage et comment les éviter.",
+    excerpt: "Un ragréage raté, c'est la garantie de devoir tout casser. Voici les 5 erreurs les plus fréquentes (et dramatiques) à éviter lors de la préparation de vos sols.",
+    date: "2026-03-05",
+    readTime: "7 min",
+    category: "Conseils",
+    emoji: "⚠️",
+    image: "/images/blog/ragreage-erreurs.jpg",
+    content: `
+<p>Un ragréage qui fissure, qui se décolle par plaques ou qui n'est pas plat... C'est le cauchemar de toute rénovation de sol, car la seule solution est souvent de tout casser à la perceuse burineur pour recommencer. Pour garantir la réussite de vos travaux, voici le top 5 des erreurs à éviter absolument en 2026.</p>
+
+<h2>Erreur n°1 : Oublier le primaire d'accrochage</h2>
+<p>C'est l'erreur fatale la plus commune, particulièrement chez les bricoleurs débutants. Le primaire est un liquide (souvent bleu ou blanc) qui se roule sur le sol brut avant de couler le ragréage. Son rôle est double : il empêche le support de "boire" toute l'eau du mortier (ce qui le ferait sécher trop vite et fissurer), et il crée une accroche chimique solide. <strong>Règle d'or : pas de primaire = ragréage qui se décolle.</strong></p>
+
+<h2>Erreur n°2 : Mal diagnostiquer le support (bois, humidité)</h2>
+<p>On ne coule pas le même produit sur une vieille dalle béton saine, sur un ancien carrelage lisse, ou sur un plancher en bois OSB. Un sol en bois travaille, grince et bouge légèrement. Si vous y coulez un ragréage autolissant classique, il craquera en quelques semaines. Il faut obligatoirement utiliser un <strong>ragréage fibré</strong>, spécialement conçu pour tolérer la déformation du support. De même, si le sol présente des remontées d'humidité, il faut traiter la source ou appliquer une barrière anti-remontées capillaires avant tout ragréage.</p>
+
+<h2>Erreur n°3 : Un mauvais dosage de l'eau</h2>
+<p>Le ragréage est une chimie précise. Si vous mettez trop d'eau pour le rendre plus fluide et plus facile à étaler, vous détruisez sa structure : au séchage, une laitance blanche apparaîtra en surface, le sol sera friable et n'aura aucune solidité. Si vous ne mettez pas assez d'eau, il sera trop pâteux, ne s'autolissera pas, et vous garderez des bosses. <strong>Il faut respecter au centilitre près les recommandations du fabricant inscrites sur le sac.</strong></p>
+
+<h2>Erreur n°4 : Oublier de traiter les joints de dilatation ou les grosses fissures</h2>
+<p>Le ragréage ne répare pas un problème structurel. Si votre dalle béton présente une fissure active de 5 mm, l'enduit de ragréage finira par se fissurer exactement au même endroit. Les fissures doivent être ouvertes, nettoyées et rebouchées avec un mortier époxy spécifique. De plus, il faut <strong>respecter les joints de dilatation</strong> existants (ne coulez pas le ragréage par-dessus, utilisez des profilés pour les conserver).</p>
+
+<h2>Erreur n°5 : Ne pas respecter le temps de séchage</h2>
+<p>L'impatience est l'ennemie du maçon. Même si un ragréage est "circulable" (on peut marcher dessus) après 4 à 6 heures, il n'est pas <em>sec</em>. L'eau qu'il contient doit s'évaporer. Si vous posez un parquet stratifié ou un sol PVC (qui sont étanches) sur un ragréage encore humide, l'humidité va rester bloquée. Résultat : le revêtement gonfle, ondule ou moisit par en dessous. Comptez généralement de <strong>24 à 72 heures</strong> (selon l'épaisseur et la météo) avant de poser la finition, et vérifiez avec un humidimètre.</p>
+
+<p><em>La meilleure façon d'éviter ces désastres est de faire appel à un artisan qualifié. Utilisez notre comparateur pour trouver des pros vérifiés.</em></p>
+`
+  },
+  {
+    slug: "entretien-duree-vie-ragreage",
+    title: "Entretien et durée de vie pour ragréage",
+    metaTitle: "Durée de vie d'un ragréage et précautions à prendre",
+    metaDescription: "Un ragréage est-il définitif ? Faut-il l'entretenir ? Découvrez la durée de vie d'un ragréage, sa résistance dans le temps et les précautions nécessaires.",
+    excerpt: "S'il est bien réalisé, un ragréage est fait pour durer des décennies. Focus sur sa résistance, son évolution sous un revêtement et les précautions à observer.",
+    date: "2026-03-20",
+    readTime: "4 min",
+    category: "Maintenance",
+    emoji: "⏳",
+    image: "/images/blog/ragreage-entretien.jpg",
+    content: `
+<p>On nous pose souvent la question : "Est-ce qu'un ragréage a une durée de vie limitée ? Faut-il le refaire au bout de quelques années ?". La réponse rapide est non : un ragréage réalisé dans les règles de l'art par un professionnel n'a <strong>pas besoin d'entretien</strong> et possède une durée de vie quasi illimitée, équivalente à celle de la dalle de votre maison.</p>
+
+<h2>La pérennité d'un ragréage protégé</h2>
+<p>Le ragréage est une couche de préparation, un "sous-sol". Il n'a pas vocation à rester à nu ou à être exposé à l'air libre (sauf ragréages spécifiques teintés prévus pour un usage de décoration, mais c'est rare). Dès lors qu'il est recouvert par votre revêtement de sol final (carrelage, parquet, moquette, sol LVT), il est totalement protégé :</p>
 <ul>
-<li><strong>Montant</strong> : jusqu'à 50 000€ pour un bouquet de travaux</li>
-<li><strong>Durée</strong> : jusqu'à 20 ans</li>
-<li><strong>Conditions</strong> : aucune condition de revenus</li>
-<li><strong>Disponible</strong> dans toutes les banques partenaires</li>
+<li>Il ne subit pas d'abrasion liée aux passages ou aux meubles.</li>
+<li>Il n'est pas exposé aux UV.</li>
+<li>Il est protégé de l'humidité stagnante (surtout sous un carrelage ou sol PVC).</li>
 </ul>
+<p>Dans ces conditions, le mortier de ragréage se pétrifie et fait corps avec la dalle. <strong>Sa durée de vie est de plusieurs décennies (30 à 50 ans et plus)</strong>.</p>
 
-<h2>Aides locales complémentaires</h2>
-<p>De nombreuses collectivités proposent des aides supplémentaires :</p>
+<h2>Peut-on laisser un ragréage brut ?</h2>
+<p><strong>C'est fortement déconseillé</strong>. Un enduit de ragréage classique (autolissant ou autonivelant) est très poreux et relativement tendre en surface par rapport à un béton industriel. Si vous le laissez brut (par exemple dans un garage) :</p>
 <ul>
-<li><strong>Région Île-de-France</strong> : aide Éco-Énergie jusqu'à 4 000€</li>
-<li><strong>Métropole de Lyon</strong> : programme Écoréno'v jusqu'à 5 000€</li>
-<li><strong>Ville de Paris</strong> : aide de l'Agence Parisienne du Climat</li>
-<li><strong>Région Bretagne</strong> : AQTA jusqu'à 3 000€</li>
+<li>Il va créer énormément de poussière fine.</li>
+<li>Il va boire la moindre tache (huile, eau, vin) de façon irréversible.</li>
+<li>Il va se rayer et s'effriter sous le passage d'une voiture ou la chute d'outils.</li>
 </ul>
-<p>Consultez l'ADIL de votre département pour connaître les aides locales disponibles.</p>
+<p>Si vous souhaitez un aspect "béton brut", il faut appliquer une peinture de sol spécifique (résine époxy ou polyuréthane) pour sceller les pores du ragréage, ou opter pour un coulis ciment décoratif prévu pour un usage sans revêtement.</p>
 
-<h2>Ordre optimal pour maximiser les aides</h2>
+<h2>Quand faut-il refaire un ragréage ?</h2>
+<p>Vous n'aurez à intervenir sur votre ragréage que dans deux situations exceptionnelles :</p>
 <ol>
-<li><strong>Demandez vos devis</strong> (3 minimum) — ne signez rien !</li>
-<li><strong>Déposez votre demande MaPrimeRénov'</strong> sur maprimerenov.gouv.fr</li>
-<li><strong>Obtenez votre offre CEE</strong> auprès d'un obligé (souvent via l'installateur)</li>
-<li><strong>Signez le devis</strong> et lancez les travaux</li>
-<li><strong>Payez l'artisan</strong> (le reste à charge après déduction des aides)</li>
-<li><strong>Recevez les primes</strong> (virées sous 4 à 8 semaines)</li>
+<li><strong>En cas de dégât des eaux majeur</strong> : Si votre sol a été inondé pendant plusieurs jours, l'eau peut s'infiltrer sous le ragréage et altérer son adhérence. S'il sonne creux, il faudra le piquer.</li>
+<li><strong>Lors d'un changement de revêtement dans 15 ou 20 ans</strong> : Si vous décidez d'enlever un vieux carrelage ou une vieille moquette très collée, l'action mécanique de dépose (burineur, raclette) va inévitablement arracher des plaques de l'ancien ragréage. Il faudra alors le poncer et réaliser un <em>nouveau</em> ragréage fin (appelé lissage) avant de poser le nouveau sol.</li>
 </ol>
 `
   },
   {
-    slug: "pac-air-eau-vs-air-air",
-    title: "PAC Air/Eau vs Air/Air : Quelle Pompe à Chaleur Choisir en 2026 ?",
-    metaTitle: "PAC Air/Eau vs Air/Air — Comparatif Complet 2026",
-    metaDescription: "Pompe à chaleur air/eau ou air/air ? Comparatif détaillé : prix, performances, aides, confort. Découvrez quelle PAC choisir selon votre logement et votre budget 2026.",
-    excerpt: "Air/eau ou air/air ? Deux technologies, deux philosophies. Comparatif détaillé pour choisir la pompe à chaleur adaptée à votre logement.",
-    date: "2026-02-05",
-    readTime: "8 min",
-    category: "Comparatif",
-    emoji: "⚖️",
-    image: "/images/blog/hero-pac-maison.png",
+    slug: "reglementation-normes-ragreage",
+    title: "Réglementation et normes en vigueur concernant le ragréage",
+    metaTitle: "Normes DTU et Réglementation du Ragréage en France",
+    metaDescription: "Quelles sont les normes qui encadrent les travaux de ragréage en France ? Découvrez le DTU 53.2, les tolérances de planéité et les obligations de résultats.",
+    excerpt: "Le ragréage n'est pas laissé au hasard. Il est strictement encadré par des normes de construction (le DTU) qui définissent la qualité requise pour votre sol.",
+    date: "2026-04-02",
+    readTime: "6 min",
+    category: "Légal",
+    emoji: "📜",
+    image: "/images/blog/ragreage-normes.jpg",
     content: `
-<p>La question revient dans 80% des consultations : <strong>PAC air/eau ou air/air ?</strong> Si les deux captent les calories de l'air extérieur, elles les restituent différemment — et cette différence change tout : prix, confort, aides, et valeur ajoutée pour votre logement.</p>
+<p>Dans le monde du bâtiment en France, les règles de l'art sont définies par les <strong>Documents Techniques Unifiés (DTU)</strong>. Ces normes garantissent que les travaux sont réalisés de façon sûre et durable, et servent de référence juridique en cas de litige ou d'expertise par une assurance. Pour le ragréage, c'est le <strong>DTU 53.2</strong> (et le cahier du CSTB) qui dicte la loi.</p>
 
-<h2>La différence fondamentale</h2>
+<h2>Le DTU 53.2 : Enduits de préparation de sol</h2>
+<p>Le DTU définit les exigences techniques auxquelles l'artisan doit se plier lors de la préparation des supports avant la pose d'un revêtement (souple ou dur). Voici les principaux points réglementaires.</p>
+
+<h3>1. Les tolérances de planéité : l'obligation de résultat</h3>
+<p>L'objectif d'un ragréage est d'obtenir un sol plan. La norme définit ce qu'est un sol "plat". Après un ragréage de classe P3 (standard), les tolérances maximales autorisées sont :</p>
 <ul>
-<li><strong>PAC Air/Eau</strong> : chauffe un <strong>circuit d'eau</strong> → alimente radiateurs, plancher chauffant et ECS (eau chaude sanitaire)</li>
-<li><strong>PAC Air/Air</strong> : chauffe (ou refroidit) l'<strong>air ambiant</strong> → diffuse via des splits muraux (climatisation réversible)</li>
+<li><strong>Une flèche maximale de 5 mm sous une règle de 2 mètres</strong>. Si on pose une grande règle métallique de 2m sur le sol, l'écart entre la règle et le sol ne doit nulle part dépasser 5 millimètres.</li>
+<li><strong>Une flèche maximale de 2 mm sous un réglet de 20 centimètres</strong>. Cela évite les petits défauts et les vagues rapprochées.</li>
 </ul>
+<p>Si l'artisan vous rend un ragréage avec une cuvette de 10 mm, il n'a pas respecté le DTU et doit corriger le tir à ses frais.</p>
 
-<h2>Comparatif détaillé</h2>
-<table>
-<thead><tr><th>Critère</th><th>PAC Air/Eau</th><th>PAC Air/Air</th></tr></thead>
-<tbody>
-<tr><td><strong>Prix TTC posé</strong></td><td>8 000 – 18 000€</td><td>3 000 – 8 000€</td></tr>
-<tr><td><strong>MaPrimeRénov'</strong></td><td>Jusqu'à <strong>11 000€</strong></td><td><strong>0€</strong> (non éligible)</td></tr>
-<tr><td><strong>CEE</strong></td><td>2 500 – 5 000€</td><td>300 – 900€</td></tr>
-<tr><td><strong>Reste à charge</strong></td><td>2 000 – 8 000€</td><td>2 500 – 7 000€</td></tr>
-<tr><td><strong>Eau chaude (ECS)</strong></td><td>✅ Oui</td><td>❌ Non</td></tr>
-<tr><td><strong>Chauffage au sol</strong></td><td>✅ Compatible</td><td>❌ Impossible</td></tr>
-<tr><td><strong>Radiateurs existants</strong></td><td>✅ Compatible (HT)</td><td>❌ Impossible</td></tr>
-<tr><td><strong>Climatisation</strong></td><td>⚠️ Option réversible</td><td>✅ Natif</td></tr>
-<tr><td><strong>COP moyen</strong></td><td>3,5 – 4,5</td><td>3,0 – 4,0</td></tr>
-<tr><td><strong>Bruit intérieur</strong></td><td>Silencieux (circuit eau)</td><td>Ventilateur audible</td></tr>
-<tr><td><strong>Confort thermique</strong></td><td>⭐⭐⭐⭐⭐ (homogène)</td><td>⭐⭐⭐ (zones froides)</td></tr>
-<tr><td><strong>Durée de vie</strong></td><td>15 – 20 ans</td><td>10 – 15 ans</td></tr>
-<tr><td><strong>Valorisation immobilière</strong></td><td>✅ Forte (+DPE)</td><td>⚠️ Faible</td></tr>
-</tbody>
-</table>
-
-<h2>Quand choisir la PAC Air/Eau ?</h2>
+<h3>2. L'obligation d'un support sec</h3>
+<p>C'est une obligation réglementaire stricte avant toute pose de revêtement : le ragréage et la dalle en dessous doivent être secs. Le taux d'humidité résiduelle du support ne doit pas excéder :</p>
 <ul>
-<li>Vous avez déjà des <strong>radiateurs ou un plancher chauffant</strong></li>
-<li>Vous voulez remplacer une <strong>chaudière gaz ou fioul</strong></li>
-<li>Vous voulez produire votre <strong>eau chaude sanitaire</strong></li>
-<li>Vous cherchez un <strong>confort homogène</strong> dans toutes les pièces</li>
-<li>Vous voulez maximiser les <strong>aides de l'État</strong></li>
-<li>Vous voulez <strong>valoriser votre bien immobilier</strong> (DPE amélioré)</li>
+<li><strong>4,5 %</strong> pour une dalle en béton classique.</li>
+<li><strong>0,5 %</strong> pour une chape anhydrite (base sulfate de calcium).</li>
 </ul>
+<p>C'est pourquoi un pro mesurera souvent l'humidité avec un testeur à carbure avant de valider la suite des travaux.</p>
 
-<h2>Quand choisir la PAC Air/Air ?</h2>
-<ul>
-<li>Vous n'avez <strong>pas de circuit d'eau</strong> (chauffage tout électrique)</li>
-<li>Votre priorité est la <strong>climatisation en été</strong></li>
-<li>Votre budget est <strong>limité à 5 000€</strong></li>
-<li>Vous êtes en <strong>location</strong> ou logement provisoire</li>
-<li>Vous chauffez une <strong>seule pièce</strong> (studio, chambre)</li>
-</ul>
+<h3>3. Le traitement des joints</h3>
+<p>La norme interdit formellement de faire un ragréage continu par-dessus un joint de dilatation de la structure (le joint qui sépare deux bâtiments ou deux dalles distinctes). Le joint doit être répercuté à travers le ragréage et le revêtement final. L'ignorer, c'est s'exposer à une fissure garantie, et les assurances refuseront toute prise en charge.</p>
 
-<h2>Notre verdict</h2>
-<p>Pour 90% des maisons individuelles en France, la <strong>PAC air/eau est le meilleur choix</strong>. Malgré un coût d'achat plus élevé, les aides MaPrimeRénov' (non disponibles pour l'air/air) réduisent le reste à charge au même niveau. Et le confort, la durée de vie et la valorisation immobilière sont nettement supérieurs.</p>
-<p>La PAC air/air reste pertinente pour les appartements sans chauffage central, les petits budgets sans accès aux aides, ou quand la climatisation est la priorité absolue.</p>
+<h2>Le marquage CE et le classement UPEC</h2>
+<p>Les produits utilisés par les professionnels doivent respecter des normes européennes (marquage CE) et sont souvent évalués selon le <strong>classement UPEC</strong> (Usure, Poinçonnement, Eau, Chimie). L'enduit de ragréage choisi doit avoir une classe de résistance au Poinçonnement (P) adaptée à la pièce (ex: P3 pour un logement, P4 ou P4S pour un local commercial à fort trafic).</p>
+
+<p><em>En faisant appel à un artisan certifié via notre plateforme, vous vous assurez qu'il travaille avec des matériaux normés et dans le strict respect du DTU en vigueur.</em></p>
 `
   },
   {
-    slug: "meilleure-marque-pac-air-eau",
-    title: "Quelle est la Meilleure Marque de PAC Air/Eau en 2026 ?",
-    metaTitle: "Meilleure Marque PAC Air/Eau 2026 — Top 6 Comparées",
-    metaDescription: "Atlantic, Daikin, Mitsubishi, Bosch, Viessmann, De Dietrich : quelle est la meilleure marque de PAC air/eau en 2026 ? Comparatif prix, fiabilité, SAV et rapport qualité/prix.",
-    excerpt: "Atlantic, Daikin, Mitsubishi ou Bosch ? Comparatif objectif des 6 meilleures marques de pompe à chaleur air/eau en 2026 : prix, fiabilité, SAV, innovation.",
-    date: "2026-02-15",
-    readTime: "9 min",
-    category: "Guide",
-    emoji: "🏆",
-    image: "/images/blog/hero-pac-maison.png",
+    slug: "tendances-ragreage-2026",
+    title: "Les tendances 2026 pour les produits de ragréage",
+    metaTitle: "Innovations et Tendances du Ragréage de Sol en 2026",
+    metaDescription: "Quoi de neuf dans le monde du sol ? Produits bas carbone, séchage ultra-rapide, ragréages colorés décoratifs... Découvrez les innovations 2026.",
+    excerpt: "Loin d'être un secteur immobile, les mortiers de ragréage innovent. Produits écologiques, séchage express et esthétique industrielle sont au menu en 2026.",
+    date: "2026-04-15",
+    readTime: "5 min",
+    category: "Actualités",
+    emoji: "🚀",
+    image: "/images/blog/ragreage-tendances.jpg",
     content: `
-<p>Choisir la bonne marque de <strong>pompe à chaleur air/eau</strong> est aussi important que le dimensionnement. Une marque fiable, c'est 15-20 ans de tranquillité. Une marque low-cost, c'est des pannes, du SAV et des regrets. Voici notre classement objectif 2026.</p>
+<p>On pourrait penser que la chimie des mortiers de sol n'évolue plus, mais les contraintes écologiques et les besoins des professionnels poussent les fabricants (Weber, Mapei, Bostik...) à innover constamment. Voici les grandes tendances et nouveautés technologiques qui marquent le marché du ragréage en 2026.</p>
 
-<h2>Top 6 des marques de PAC air/eau en France</h2>
+<h2>1. Le ragréage bas carbone (Écologique)</h2>
+<p>L'industrie cimentière est l'une des plus polluantes au monde (forte émission de CO2). La révolution de 2026, poussée par la réglementation environnementale RE2020 en France, est la généralisation des <strong>ragréages bas carbone</strong>. Les fabricants ont réussi à remplacer une grande partie du ciment Portland (très énergivore) par des liants alternatifs (laitiers de hauts fourneaux, argiles calcinées).<br>
+<strong>Résultat :</strong> des sacs avec une empreinte carbone réduite de 30 % à 50 %, tout en gardant les mêmes performances mécaniques.</p>
 
-<h3>🥇 1. Daikin — Le leader mondial incontesté</h3>
-<p><strong>Modèle phare</strong> : Altherma 3 H (monobloc ou bi-bloc)</p>
-<ul>
-<li>✅ Fiabilité exceptionnelle — leader mondial depuis 1924</li>
-<li>✅ Fonctionne jusqu'à -25°C — le meilleur en grand froid</li>
-<li>✅ Technologie inverter de référence</li>
-<li>✅ Application mobile Daikin Onecta pour le pilotage à distance</li>
-<li>⚠️ Prix premium : 11 000 – 15 000€ TTC posé</li>
-<li>⚠️ SAV parfois lent en période de forte demande</li>
-</ul>
-<p><strong>Idéal pour</strong> : les zones froides (H1), les grandes maisons, ceux qui veulent le meilleur sans compromis.</p>
+<h2>2. Les formules à séchage "Ultra-Express"</h2>
+<p>Le temps, c'est de l'argent. Sur un chantier de rénovation, l'attente du séchage d'un ragréage (souvent 24 à 48h) immobilise la pièce. En 2026, les mortiers à prise rapide se démocratisent. Des ragréages high-tech permettent désormais d'être "circulables" (on peut marcher dessus) en <strong>1 heure</strong>, et autorisent la pose d'un carrelage au bout de <strong>3 heures seulement</strong>, contre le lendemain auparavant.</p>
 
-<h3>🥈 2. Atlantic — Le champion français</h3>
-<p><strong>Modèle phare</strong> : Alfea Excellia AI</p>
-<ul>
-<li>✅ Fabrication française (La Roche-sur-Yon) — SAV réactif</li>
-<li>✅ Pilotage intelligent par IA (auto-apprentissage de vos habitudes)</li>
-<li>✅ Excellent rapport qualité/prix français</li>
-<li>✅ Réseau d'installateurs agréés très dense</li>
-<li>⚠️ Moins performant que Daikin en dessous de -15°C</li>
-</ul>
-<p><strong>Idéal pour</strong> : ceux qui veulent un produit français, un bon SAV et le pilotage IA.</p>
+<h2>3. Les ragréages décoratifs (Le sol en béton lissé)</h2>
+<p>Historiquement, le ragréage est un produit d'interposition : il est moche, gris, et on le cache. La grande tendance architecturale 2026 pour les lofts et intérieurs modernes est le "coulis ciment" ou <strong>ragréage décoratif</strong>. Ce sont des ragréages teintés dans la masse (gris anthracite, béton brut, beige sable) conçus pour être laissés apparents. Ils sont plus résistants à l'usure, on les ponce finement, puis on applique un vernis polyuréthane mat ou satiné. C'est une alternative économique et très design au béton ciré traditionnel.</p>
 
-<h3>🥉 3. Mitsubishi Electric — L'innovation grand froid</h3>
-<p><strong>Modèle phare</strong> : Ecodan Zubadan</p>
-<ul>
-<li>✅ Technologie Zubadan exclusive — 100% de puissance à -15°C</li>
-<li>✅ Ultra-silencieux (< 45 dB unité extérieure)</li>
-<li>✅ Garantie compresseur 7 ans (la plus longue du marché)</li>
-<li>⚠️ Interface de pilotage moins intuitive que Daikin</li>
-<li>⚠️ Prix élevé en gamme Zubadan</li>
-</ul>
-<p><strong>Idéal pour</strong> : les zones de montagne, les voisinages sensibles au bruit.</p>
-
-<h3>4. Bosch — Le meilleur rapport qualité/prix</h3>
-<p><strong>Modèle phare</strong> : Compress 7000i AW</p>
-<ul>
-<li>✅ Prix très compétitif : 9 000 – 12 500€ posé</li>
-<li>✅ Qualité de fabrication allemande</li>
-<li>✅ Intégration domotique (compatible Google Home, Alexa)</li>
-<li>⚠️ Marque moins connue en PAC que Daikin ou Atlantic</li>
-</ul>
-<p><strong>Idéal pour</strong> : les budgets maîtrisés sans sacrifier la qualité.</p>
-
-<h3>5. Viessmann — La robustesse allemande</h3>
-<p><strong>Modèle phare</strong> : Vitocal 200-A / 222-A</p>
-<ul>
-<li>✅ Construction robuste — réputation de longévité</li>
-<li>✅ Réseau SAV dense en France</li>
-<li>✅ Bon COP en conditions réelles</li>
-<li>⚠️ Design de l'unité extérieure perfectible</li>
-</ul>
-<p><strong>Idéal pour</strong> : ceux qui privilégient la durabilité sur 20+ ans.</p>
-
-<h3>6. De Dietrich — L'héritage français</h3>
-<p><strong>Modèle phare</strong> : Alezio V220</p>
-<ul>
-<li>✅ Fabricant français historique depuis 1684</li>
-<li>✅ Silencieux et compact</li>
-<li>✅ Bon rapport qualité/prix</li>
-<li>⚠️ Innovation moins rapide que Daikin ou Atlantic</li>
-</ul>
-
-<h2>Les marques à éviter</h2>
-<p>Méfiez-vous des marques inconnues vendues en porte-à-porte ou par des « commerciaux énergie ». Les signes d'alerte :</p>
-<ul>
-<li>❌ Marque introuvable sur les sites spécialisés</li>
-<li>❌ Pas de réseau SAV en France</li>
-<li>❌ Prix anormalement bas (< 6 000€ posé)</li>
-<li>❌ Garantie compresseur < 5 ans</li>
-<li>❌ Vendeur qui insiste pour signer « aujourd'hui »</li>
-</ul>
-
-<h2>Notre conseil final</h2>
-<p>Les 3 premières marques (Daikin, Atlantic, Mitsubishi) représentent <strong>75% des installations en France</strong> pour une bonne raison : elles sont fiables, performantes et bien servicées. Choisissez parmi ces trois et vous ne vous tromperez pas.</p>
+<h2>4. L'amélioration de l'ergonomie (Dust Free)</h2>
+<p>Verser un sac de 25 kg de poudre dans un seau génère habituellement un énorme nuage de poussière toxique pour les poumons de l'artisan (silice). La norme tend vers l'adoption de la technologie "Sans Poussière" (<em>Dust Free</em>). Grâce à des additifs spéciaux, le versement et le malaxage ne produisent quasiment aucune poussière, rendant le chantier beaucoup plus propre — un vrai plus si vous habitez dans le logement pendant les travaux !</p>
 `
-  },
-  {
-    slug: "entretien-pompe-a-chaleur",
-    title: "Entretien Pompe à Chaleur : Prix, Fréquence & Obligations 2026",
-    metaTitle: "Entretien Pompe à Chaleur 2026 — Prix, Fréquence & Obligations",
-    metaDescription: "L'entretien d'une PAC est obligatoire tous les 2 ans depuis 2020. Prix : 150 à 300€/an. Découvrez ce que comprend la maintenance, les obligations légales et nos conseils.",
-    excerpt: "L'entretien d'une pompe à chaleur est obligatoire depuis 2020. Coût : 150 à 300€/an. Voici tout ce que vous devez savoir sur la maintenance de votre PAC.",
-    date: "2026-03-01",
-    readTime: "7 min",
-    category: "Maintenance",
-    emoji: "🔧",
-    image: "/images/blog/hero-pac-maison.png",
-    content: `
-<p>Depuis le <strong>décret du 28 juillet 2020</strong>, l'entretien d'une pompe à chaleur contenant plus de 2 kg de fluide frigorigène est <strong>obligatoire tous les 2 ans</strong>. En pratique, la plupart des installateurs recommandent un <strong>contrat de maintenance annuel</strong> pour garantir performances et longévité. Voici tout ce qu'il faut savoir.</p>
-
-<h2>Ce que comprend l'entretien d'une PAC air/eau</h2>
-<h3>Visite annuelle standard (150 – 200€)</h3>
-<ul>
-<li>Contrôle de la pression du circuit hydraulique</li>
-<li>Vérification du fluide frigorigène (pression, niveau, étanchéité)</li>
-<li>Nettoyage de l'évaporateur de l'unité extérieure</li>
-<li>Contrôle des raccordements électriques</li>
-<li>Vérification du fonctionnement du dégivrage automatique</li>
-<li>Mesure du COP réel et comparaison avec le COP nominal</li>
-<li>Contrôle du bon fonctionnement du thermostat</li>
-<li>Remise d'une attestation d'entretien</li>
-</ul>
-
-<h3>Visite complète tous les 2 ans (200 – 300€)</h3>
-<p>En plus de la visite standard :</p>
-<ul>
-<li>Contrôle d'étanchéité du circuit frigorifique (obligatoire > 2 kg de fluide)</li>
-<li>Mesure des performances énergétiques complètes</li>
-<li>Vérification de la conformité aux normes en vigueur</li>
-<li>Bilan de l'état général et recommandations</li>
-</ul>
-
-<h2>Prix d'un contrat de maintenance en 2026</h2>
-<table>
-<thead><tr><th>Type de contrat</th><th>Prix annuel</th><th>Inclus</th></tr></thead>
-<tbody>
-<tr><td><strong>Contrat basique</strong></td><td>150 – 200€/an</td><td>1 visite annuelle + attestation</td></tr>
-<tr><td><strong>Contrat confort</strong></td><td>200 – 250€/an</td><td>1 visite + dépannage prioritaire</td></tr>
-<tr><td><strong>Contrat premium</strong></td><td>250 – 350€/an</td><td>1 visite + dépannage 24h/24 + pièces incluses</td></tr>
-</tbody>
-</table>
-<p>💡 <strong>Astuce</strong> : négociez l'inclusion de la 1ère année de maintenance dans le devis d'installation. De nombreux installateurs acceptent.</p>
-
-<h2>Ce que vous pouvez faire vous-même</h2>
-<p>Certains gestes d'entretien ne nécessitent pas de technicien :</p>
-<ul>
-<li><strong>Tous les mois</strong> : vérifier que l'unité extérieure n'est pas obstruée (feuilles, neige, débris)</li>
-<li><strong>Au printemps</strong> : nettoyer les ailettes de l'unité extérieure au jet d'eau douce (pas de karcher !)</li>
-<li><strong>En automne</strong> : dégager le périmètre de l'unité extérieure (50 cm autour)</li>
-<li><strong>En hiver</strong> : ne JAMAIS couvrir l'unité extérieure (elle doit respirer)</li>
-<li><strong>Toute l'année</strong> : surveiller le manomètre de pression du circuit (si accessible)</li>
-</ul>
-
-<h2>Signes qu'un dépannage est nécessaire</h2>
-<ul>
-<li>🔴 La PAC ne démarre plus ou se met en erreur fréquemment</li>
-<li>🔴 La facture d'électricité augmente anormalement (+20%)</li>
-<li>🔴 L'eau des radiateurs n'est plus assez chaude</li>
-<li>🔴 L'unité extérieure fait un bruit inhabituel (claquements, sifflements)</li>
-<li>🔴 Du givre persistant sur l'unité extérieure (même hors cycle de dégivrage)</li>
-<li>🔴 Fuite d'eau visible au niveau de l'unité intérieure</li>
-</ul>
-
-<h2>Impact de l'entretien sur la durée de vie</h2>
-<table>
-<thead><tr><th>Entretien</th><th>Durée de vie moyenne</th><th>COP moyen maintenu</th></tr></thead>
-<tbody>
-<tr><td>✅ Entretien annuel régulier</td><td><strong>18 – 22 ans</strong></td><td>95% du COP nominal</td></tr>
-<tr><td>⚠️ Entretien tous les 2-3 ans</td><td>12 – 16 ans</td><td>85% du COP nominal</td></tr>
-<tr><td>❌ Aucun entretien</td><td>8 – 12 ans</td><td>70% du COP nominal</td></tr>
-</tbody>
-</table>
-<p>Un entretien régulier prolonge la vie de votre PAC de <strong>6 à 10 ans</strong> et maintient des performances optimales. Sur 20 ans, les 3 000 à 5 000€ investis en maintenance se remboursent 5 à 10 fois en économies de chauffage.</p>
-`
-  },
+  }
 ];
